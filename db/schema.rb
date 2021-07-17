@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 0) do
-=======
-ActiveRecord::Schema.define(version: 2021_07_15_101638) do
+ActiveRecord::Schema.define(version: 2021_07_16_094734) do
 
   create_table "addresses", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -23,6 +20,13 @@ ActiveRecord::Schema.define(version: 2021_07_15_101638) do
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
   create_table "cart_items", force: :cascade do |t|
@@ -66,6 +70,5 @@ ActiveRecord::Schema.define(version: 2021_07_15_101638) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
->>>>>>> 5b3ee60f2d675a6a612ab5a911e6f43c9bcfa535
 
 end
