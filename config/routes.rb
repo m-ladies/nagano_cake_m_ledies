@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
 
-  
-  
+
+
   root 'customers/items#top'
   get 'items' => 'customers/items#about'
-  
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.
  root 'customers/items#top'
@@ -25,15 +25,15 @@ Rails.application.routes.draw do
 
   end
 
-  
+
   # customer
   devise_for :customers, controllers: {
   sessions:      'customers/sessions',
   passwords:     'customers/passwords',
   registrations: 'customers/registrations'
 }
-  
-  
+
+
 
   # 顧客
   namespace :customers do
@@ -41,13 +41,13 @@ Rails.application.routes.draw do
     resources :cart_items, :addresses
 
     resources :customers, only:[:show, :update]
-    
+
     resources :orders,only: [:new,:index,:show,:create] do
       collection do
         post 'log'
         get 'thanx'
       end
     end
-      
+
   end
 end
