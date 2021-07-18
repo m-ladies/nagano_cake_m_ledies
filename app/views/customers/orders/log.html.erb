@@ -44,7 +44,7 @@
           </tr>
           <tr>
             <th class="info">請求金額</th>
-            <td class="text-right">¥<%= total_payment(@order).to_s(:delimited) %></td> <%#商品合計と請求金額、どう書けばよいのか%>
+            <td class="text-right">¥<%= billing(@order).to_s(:delimited) %></td> <%#商品合計と請求金額、どう書けばよいのか%>
           </tr>
       </table>
     </div>
