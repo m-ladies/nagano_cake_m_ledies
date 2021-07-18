@@ -13,10 +13,18 @@ Rails.application.routes.draw do
     resources :genres,only: [:index,:create,:edit,:update]
   end
 
-
+  # 顧客
   namespace :customers do
     resources :items, only:[:index, :show]
-    resources :cart_items, :orders, :addresses
+    resources :cart_items, :addresses
     resources :customers, only:[:show, :update]
+    
+    resources :orders,only: [:new,:index,:show,:create] do
+      collection do
+        post 'log'
+        get 'thanx'
+      end
+    end
+      
   end
 end
