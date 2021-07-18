@@ -1,6 +1,10 @@
 class Customers::CartItemsController < ApplicationController
     # before_action :setup_item, only: [:destroy]
-    
+  
+  def index
+    @cart_items = current_cart
+  end 
+  
   def destroy
     @setup_item.destroy
     redirect_to current_cart
