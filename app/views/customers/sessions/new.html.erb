@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2 text-center" style="margin: 30px;">
+      <h4 style="background-color: #cd5c5c; color: white;">ログイン</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4 text-center" style="margin: 30px 0 0 50px;">
+      <h5 style="background-color: #cd5c5c; color: white;">会員の方はこちらからログイン</h5><br>
+    </div>
+  </div>
+
+      <%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
+      <div class="row" style="font-size: 18px; margin-top: 10px;">
+        <div class="col-md-2 text-left">
+        </div>
+        <div class="col-md-2 text-left">
+         <%= f.label :メールアドレス %>
+        </div>
+        <div class="col-md-1 text-left">
+         <%= f.text_field :email, autofocus: true, placeholder:"メールアドレス", size: 50 %>
+        </div>
+      </div>
+
+      <div class="row" style="font-size: 18px; margin-top: 10px;">
+        <div class="col-md-2 text-left">
+        </div>
+        <div class="col-md-2 text-left">
+          <%= f.label :パスワード %>
+        </div>
+        <div class="col-md-1 text-left">
+          <%= f.password_field :password, autocomplete: "current-password", size: 50 %>
+        </div>
+     </div>
+     <br>
+     <div class="row" style="mmargin-top: 10px;">
+       <div class="col-md-4 text-left">
+        </div>
+       <div class="col-sm-1 text-left">
+         <div class="actions">
+           <%= f.submit "ログイン", class: "btn btn-primary" %>
+        </div>
+       </div>
+     </div>
+     <% end %>
+     <div class="row">
+      <div class="col-sm-4 text-center" style="margin: 30px 0 15px 50px;">
+       <h5 style="background-color: #cd5c5c; color: white;">会員登録がお済みでない方</h5>
+      </div>
+     </div>
+      <p class="col-md-6 text-right"><%= link_to 'こちら', new_customer_registration_path %>　から新規登録を行ってください</p>
+</div>
