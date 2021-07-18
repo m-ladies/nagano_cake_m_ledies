@@ -2,15 +2,18 @@ class Admin::CustomersController < ApplicationController
   before_action :authenticate_admin!
   
   def index
-    @customers = Customer.with_deleted.page(params[:page]).per(10) #退会も含めるためwith_deleted
+    @customers = Customer.page(params[:page]).per(10) 
   end
   
   def show
-    @customer = Customer.find(params[:id])
+    # @customer = Customer.find(params[:id])
   end
   
   def edit
-    @customer = Customer.find(params[:id])
+    # @customer = Customer.find(params[:id])
   end
   
+  
+  def update
+  end
 end

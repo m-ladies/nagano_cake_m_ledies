@@ -3,8 +3,7 @@ class Admin::OrdersController < ApplicationController
 
   def top
     @orders = Order.all.page(params[:page]).per(10)
-    from = Time.current.beginning_of_day
-    to = Time.current.end_of_day
+
   end
 
 
