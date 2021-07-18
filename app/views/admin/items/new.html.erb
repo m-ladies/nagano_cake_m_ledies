@@ -3,12 +3,14 @@
      <h3>商品新規登録</h3>
    </div>
    <div class="row">
-     <%= form_with model:@item, url:new_admin_item_path, local:true do |f| %>
+     <%= form_with model:@item, url:admin_items_path, local:true do |f| %>
        <table>
          <tr>
            <td></td>
            <td>商品画像</td>
-           <td><%= f.attachment_field :image, class: "image" %></td>
+           <td>
+            <%= f.attachment_field :image, class: "image" %>
+           </td>
          </tr>
          <tr>
            <td></td>
