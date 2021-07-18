@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2 text-center" style="margin: 30px 0 35px 0;">
-      <h5 style="background-color: #cd5c5c; color: white;">ショッピングカート</h5>
+    <div class="col-md-3 text-center" style="margin: 30px 0 35px 0;">
+      <h5 style="background-color: #dcdcdc; color: black;">ショッピングカート</h5>
     </div>
     
     <div class="ml-auto">
-      <link_to "カートを空にする", 
+      <%= link_to "カートを空にする", all_destroy_customers_cart_items_path, method: :delete, class: "btn btn-sm btn-danger" %>
     </div>

@@ -6,5 +6,4 @@ class Item < ApplicationRecord
     belongs_to :order_detail
     has_many :cart_items
 
-
 end

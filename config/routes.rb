@@ -38,8 +38,13 @@ Rails.application.routes.draw do
   # 顧客
   namespace :customers do
     resources :items, only:[:index, :show]
-    resources :cart_items, :addresses
-
+    resources :cart_items, only:[:index, :update, :create, :destroy] do
+      collection do
+        delete 'all_destroy'
+      end 
+    end
+    
+    resources :addresses
     resources :customers, only:[:show, :update]
     
     resources :orders,only: [:new,:index,:show,:create] do
