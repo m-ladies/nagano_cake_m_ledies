@@ -8,28 +8,31 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-          
+
   <body> 　　　　<!--顧客側-->
-  
+
     <% if customer_signed_in? %>
       <li>
-        <%= link_to "マイページ",  class: 'nav-link  badge badge-pill badge-light' %>
+        ようこそ<%= current_customer.last_name %>さん！
       </li>
       <li>
-        <%= link_to "商品一覧", class: 'nav-link  badge badge-pill badge-light' %>
+        <%= link_to "マイページ", class: 'nav-link  badge badge-pill badge-light' %>
+      </li>
+      <li>
+        <%= link_to "商品一覧", customers_items_path, class: 'nav-link  badge badge-pill badge-light' %>
       </li>
       <li>
         <%= link_to "カート", class: 'nav-link  badge badge-pill badge-light' %>
       </li>
       <li>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link  badge badge-pill badge-light' %>
       </li>
     <% else %>
       <li>
         <%= link_to "About", items_path, class: 'nav-link  badge badge-pill badge-light' %>
       </li>
       <li>
-        <%= link_to "商品一覧",  class: 'nav-link  badge badge-pill badge-light' %>
+        <%= link_to "商品一覧", customers_items_path, class: 'nav-link  badge badge-pill badge-light' %>
       </li>
       <li>
         <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link  badge badge-pill badge-light' %>
@@ -37,9 +40,9 @@
       <li>
         <%= link_to "ログイン", new_customer_session_path, class: 'nav-link  badge badge-pill badge-light' %>
       </li>
-      
+
     <% end %>
-    
+
     <%= yield %>
   </body>
 </html>
