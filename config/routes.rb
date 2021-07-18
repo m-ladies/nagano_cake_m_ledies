@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    resources :items, :customers, :genres, :orders
+    root 'orders#top'
+    resources :items, :customers, :genres
+    resources :orders, only: [:show]
+    get "orders/top" => "orders#top"
   end
 
   # 顧客
