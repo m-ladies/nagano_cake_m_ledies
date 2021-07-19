@@ -3,7 +3,7 @@
      <h3>商品新規登録</h3>
    </div>
    <div class="row">
-     <%= form_with model:@item, url:admin_items_path, local:true do |f| %>
+     <%= form_with model: @item, url: admin_items_path, method: :post, local:true do |f| %>
        <table>
          <tr>
            <td></td>
@@ -46,8 +46,8 @@
              <%= f.label :sale_status, '販売停止中', value: false %>
            </td>
              <!--プルダウン-->
-             <!--<%= f.label :"販売ステータス", class: "col-sm-3 control-label" %>-->
-             <!--<%= f.select :is_active, [['販売中', true], ['販売停止', false]], prompt: "-- 選択してください --", class: "col-sm-9 is_sale" %>-->
+             <%#= f.label :"販売ステータス", class: "col-sm-3 control-label" %>
+             <!--<%#= f.select :is_active, [['販売中', true], ['販売停止', false]], prompt: "-- 選択してください --", class: "col-sm-9 is_sale" %>-->
          </tr>
        </table>
        <%= f.submit "新規登録", class: "btn btn-primary btn-lg pull-right" %>

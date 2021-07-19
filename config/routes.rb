@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.
- root 'customers/items#top'
+  # root 'customers/items#top'
 
   #管理者
   devise_for :admins, :controllers => {
@@ -18,7 +18,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'orders#top'
-    resources :items, :customers
+    resources :items
+    resources :customers
     resources :orders, only: [:show]
     resources :genres,only: [:index,:create,:edit,:update]
     get "orders/top" => "orders#top"
