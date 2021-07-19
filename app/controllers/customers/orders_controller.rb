@@ -15,19 +15,19 @@ class Customers::OrdersController < ApplicationController
     payment_method: params[:order][:payment_method]
     )
 
-    # total_priceに請求額を代入
-    @order.total_price = billing(@order)
+    # total_paymentに請求額を代入
+    @order.total_payment = billing(@order)
 
-    # addressにresidenceの値がはいっていれば
-    if params[:order][:address] == "residence"
+    # addressに会員の値がはいっていれば
+    if params[:order][:address] == "current_customer.address"
       @order.postal_code = current_customer.postal_code
       @order.address     = current_customer.residence
       @order.name        = current_customer.last_name +
                            current_customer.first_name
 
-    # addressにshipping_addressesの値がはいっていれば
-    elsif params[:order][:address] == "shipping_addresses"
-      ship = Address.find(params[:order][:shipping_address_id])
+    # addressにaddresses(配送先)の値がはいっていれば
+    elsif params[:order][:address] == "addresses"
+      ship = Address.find(params[:order][:address_id])
       @order.postal_code = ship.postal_code
       @order.address     = ship.address
       @order.name        = ship.name
