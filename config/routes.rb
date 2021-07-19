@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
 
 
-
   root 'customers/items#top'
   get 'items' => 'customers/items#about'
 
@@ -23,6 +22,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:show]
     resources :genres,only: [:index,:create,:edit,:update]
     get "orders/top" => "orders#top"
+    
 
   end
 
