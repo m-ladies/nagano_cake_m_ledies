@@ -26,7 +26,7 @@
         <%= link_to "商品一覧", customers_items_path, class: 'nav-link  badge badge-pill badge-light' %>
       </li>
       <li>
-        <%= link_to "カート", class: 'nav-link  badge badge-pill badge-light' %>
+        <%= link_to "カート", customers_cart_items_path, class: 'nav-link  badge badge-pill badge-light' %>
       </li>
       <li>
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link  badge badge-pill badge-light' %>
