@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2 text-center" style="margin: 30px 0 35px 0;">
+      <h5 style="background-color: #cd5c5c; color: white;">商品編集</h5>
+    </div>
+  </div>
+  <%= form_with model: @item, url: admin_item_path(@item), local: true do |f| %>
+    <div class="row" style="font-size: 13px; margin-top: 10px;">
+      <div class="col-md-3 text-center">
+        <p>商品画像</p>
+      </div>
+      <div class="col-md-1 text-center">
+        <%= f.attachment_field :image, placeholder: "ファイルを選択" %>
+      </div>
+    </div>
+    <div class="row" style="font-size: 13px; margin-top: 10px;">
+      <div class="col-md-3 text-center">
+        <p>商品名</p>
+      </div>
+      <div class="col-md-1 text-center">
+        <%= f.text_field :name, placeholder: "商品名", size: 30 %>
+      </div>
+    </div>
+    <div class="row" style="font-size: 13px; margin-top: 10px;">
+      <div class="col-md-3 text-center">
+        <p>商品説明</p>
+      </div>
+      <div class="col-md-1 text-center">
+        <%= f.text_area :introduction, placeholder: "ここに説明を記述します", size: "30x6" %>
+      </div>
+    </div>
+    <div class="row" style="font-size: 13px; margin-top: 10px;">
+      <div class="col-md-3 text-center">
+        <p>ジャンル</p>
+      </div>
+      <div class="col-md-1 text-center">
+        <%= f.collection_select(:genre_id, @genres, :id, :name, {prompt: "選択してください"})%>
+      </div>
+    </div>
+    <div class="row" style="font-size: 13px; margin-top: 10px;">
+      <div class="col-md-3 text-center">
+        <p>税抜価格</p>
+      </div>
+      <div class="col-md-1 text-center">
+        <%= f.text_field :price, placeholder: "1000", size: 30 %>
+      </div>
+    </div>
+    <div class="row" style="font-size: 13px; margin-top: 10px;">
+      <div class="col-md-3 text-center">
+        <p>販売ステータス</p>
+      </div>
+      <div class="done col-md-3">
+        <div class="row">
+          <div>
+            <%= f.radio_button :is_active, true %>
+            <%= f.label :is_active, '販売中', value: true %>
+          </div>
+          <div class="col-md-1"></div>
+          <div>
+            <%= f.radio_button :is_active, false %>
+            <%= f.label :is_active, '販売停止中', value: false %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="font-size: 13px; margin-top: 10px;">
+      <div class="col-md-3 text-left">
+      </div>
+      <div class="col-md-2 text-right">
+        <%= f.submit "変更を保存", class: "btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
+</div>

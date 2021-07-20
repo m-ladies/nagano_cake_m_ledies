@@ -14,29 +14,28 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    root 'orders#top'
+    get "homes/top" => "homes#top"
     resources :items
     resources :customers
     resources :orders, only: [:show]
     resources :genres,only: [:index,:create,:edit,:update]
-    get "orders/top" => "orders#top"
   end
 
 
-  # 顧客
+
+  # customer
   devise_for :customers, controllers: {
   sessions:      'customers/sessions',
   passwords:     'customers/passwords',
   registrations: 'customers/registrations'
 }
-  
+
   namespace :customers do
-    resources :items, only:[:index, :show]
-    
-    resources :cart_items, only:[:index, :update, :create, :destroy] do
+    resources :items, only: [:index, :show]
+    resources :cart_items, only: [:index, :update, :create, :destroy] do
       collection do
         delete 'all_destroy'
-      end 
+      end
     end
     
     # get=データを取得する処理、patch=情報を更新する(SQLでいうupdate)
@@ -48,15 +47,18 @@ Rails.application.routes.draw do
     end
     # collection=　resourcesでは自動生成されないものに使う。生成するroutingに:idがつかない。
 
+
     resources :orders,only: [:new,:index,:show,:create] do
       collection do
-        post 'log'       
-        get 'thanx'     
+        post 'log'
+        get 'thanx'
       end
     end
     # post=URLが保存可、get=URL保存不可
    
     resources :addresses,only: [:index,:create,:destroy,:edit,:update]
-    end  
+  end 
+end
 
-  end
+
+    
