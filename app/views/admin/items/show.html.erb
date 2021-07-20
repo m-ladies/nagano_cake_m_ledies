@@ -1,36 +1,66 @@
-<!--<div class=“row”>-->
-<!--  <h1>会員一覧</h1>-->
-<!--    <table class='table table-hover table-inverse'>-->
-<!--    <thead>-->
-<!--      <tr class="info">-->
-<!--      <th>商品ID</th>-->
-<!--      <th>税込価格</th>-->
-<!--      <th>ジャンル</th>-->
-<!--      <th>ステータス</th>-->
-<!--      </tr>-->
-<!--    </thead>-->
-
-<!--    <tbody>-->
-<!--	<%# @customers.each do |customer| %>-->
-<!--			<tr>-->
-<!--			  <td><%#= customer.id %></td>-->
-<!--			  <td><%#= customer.id %></td>-->
-<!--          <td><%#= link_to admin_customer_data_path(customer) do %>-->
-<!--              <%#= customer.last_name %>-->
-<!--              <%#= customer.first_name %>-->
-<!--              <%# end %>-->
-<!--            </td>-->
-<!--          <td><%#= customer.email %></td>-->
-<!--          <td><%#if customer.is_enabled == true %>-->
-<!--                  有効-->
-<!--					    <%# else %>-->
-<!--					        退会-->
-<!--					    <%# end %>-->
-<!--					</td>-->
-<!--				</tr>-->
-<!--			<%#end %>-->
-			<!--kaminari記述-->
-<!--			<%#= paginate @customers %>-->
-<!--		</tbody>-->
-<!--	</table>-->
-<!--</div>-->
+<div class="container">
+  <div class="col-md-2 text-center" style="margin: 30px 0 35px 0;">
+    <h5 style="background-color: #cd5c5c; color: white;">商品詳細</h5>
+  </div>
+  <div class="row">
+    <div class="col-md-5 text-center" style="margin: 30px 0 35px 0;">
+      <div class="post-body">
+        <%= attachment_image_tag @item, :image, size: "300x200" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+    <div class="row" style="margin: 30px 0 35px 0;">
+      <div class="col-md-4 text-left">
+        <p>商品名</p>
+      </div>
+      <div class="col-md-8 text-left">
+        <%= @item.name %>
+      </div>
+    </div>
+    <div class="row" style="margin: 30px 0 35px 0;">
+      <div class="col-md-4 text-left">
+        <p>商品説明</p>
+      </div>
+      <div class="col-md-8 text-left">
+        <%= @item.introduction %>
+      </div>
+    </div>
+    <div class="row" style="margin: 30px 0 35px 0;">
+      <div class="col-md-4 text-left">
+        <p>ジャンル</p>
+      </div>
+      <div class="col-md-8 text-left">
+        <%= @item.genre.name %>
+      </div>
+    </div>
+    <div class="row" style="margin: 30px 0 35px 0;">
+      <div class="col-md-4 text-left">
+        <p>税込価格</div>
+      <div class="col-md-8 text-left">
+        <%= @item.price %>円
+      </div>
+    </div>
+    <div class="row" style="margin: 30px 0 35px 0;">
+      <div class="col-md-4 text-leftr">
+        <p>販売ステータス</p>
+      </div>
+      <div class="col-md-8 text-left">
+        <% if @item.is_active %>
+            販売中
+         <% else %>
+            販売停止中
+         <% end %>
+      </div>
+    </div>
+    <div class="row" style="font-size: 13px; margin-top: 10px;">
+      <div class="col-md-3 text-center">
+      </div>
+      <div class="col-md-4 text-center">
+        <div class="actions">
+          <%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-success" %>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

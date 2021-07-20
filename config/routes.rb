@@ -21,10 +21,10 @@ Rails.application.routes.draw do
     resources :customers
     resources :orders, only: [:show]
     resources :genres,only: [:index,:create,:edit,:update]
-    
 
 
   end
+
 
 
   # customer
@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 }
 
   namespace :customers do
+
 
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :update, :create, :destroy] do
