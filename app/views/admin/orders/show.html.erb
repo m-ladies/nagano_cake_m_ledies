@@ -1,1 +1,81 @@
-<h1>注文詳細</h1>
+<div class="container my-5">
+    <div class="row">
+        <h2>注文履歴詳細</h2>
+        <div class="row mt-3">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td>購入者</td>
+                        <td><%= link_to admin_customer_path(@order.customer) do %><%= @order.name %></td>
+                    </tr>
+                    <tr>
+                      <td>注文時</td>
+                      <td></td>
+                     </tr>
+                    <tr>
+                        <td>配送先</td>
+                        <td><%= @order.address %><%= @order.postal_code %></td>
+                    </tr> 
+                    <tr>
+                        <td>支払い方法</td>
+                        <td><%= @order.payment_method %></td>
+                    </tr>
+                    <tr>
+                        <td>注文ステータス</td>
+                        <td><% if @order. == true %>
+                        <%= f.select :order_status, [["入金待ち", "入金待ち"], ["入金確認","入金確認"],, class: "form-control" %>
+                        <%= f.submit "更新", class: "btn btn-primary btn-sm" %>
+                        <% end %>
+                        </td>
+                    </tr>
+                </tbody>
+                
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>商品名</th>
+                        <th>単価(税込)</th>
+                        <th>数量</th>
+                        <th>小計</th>
+                        <th>製作ステータス</th>
+                        <th colspan="1"></th>
+                      </tr>
+                    </thead>
+                    <% @order_details.each do |order_detail| %>
+                    <tbody>
+                        <tr>
+                            <td><%= order_detail.item_name %></td>
+                            <td><%= (order_detail.item_price * 1.1).floor %></td>
+                            <td><%= order_detail.quantity %></td>
+                            <td><%= (order_detail.item_price * order_detail.quantity * 1.1).floor %></td>
+                            <td>
+                                <%= form_with , url: admin_item_status_path(order_detail, order_id: @order.id do |f| %>
+                                <%= f.select :item_status, [["着手不可", "着手不可"], ["製作待ち","製作待ち"], ["製作中","製作中"], ["製作完了","製作完了"]] %>
+                                <%= f.submit "更新", class: "btn btn-primary btn-sm ml-3" %>
+                                <% end %>
+                            </td>
+                        </tr>
+                    </tbody>
+                  <% end %>
+                </table>
+            </div>
+            <div class="col-sm-3 d-flex">
+              <table class="table table-borderless align-self-end">
+                <tbody>
+                  <tr class="border-bottom border-dark">
+                    <td>商品合計</td>
+                    <td><%= @items_total_price %></td>
+                  </tr>
+        
+                  <tr class="border-bottom border-dark">
+                    <td>送料</td>
+                    <td><%= @order.shipping_cost %></td>
+                  </tr>
+                  <tr class="border-bottom border-dark">
+                    <td>請求合計金額</td>
+                    <td><%= @order.total_payment %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
