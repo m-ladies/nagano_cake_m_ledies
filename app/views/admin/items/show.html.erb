@@ -35,9 +35,11 @@
     </div>
     <div class="row" style="margin: 30px 0 35px 0;">
       <div class="col-md-4 text-left">
-        <p>税込価格</div>
+        <p>税込価格<br>(税抜価格)</p>
+      </div>
       <div class="col-md-8 text-left">
-        <%= @item.price %>円
+        <%= @item.add_tax_price.to_s(:dalimited) %>
+        (<%= @item.price %>)円
       </div>
     </div>
     <div class="row" style="margin: 30px 0 35px 0;">

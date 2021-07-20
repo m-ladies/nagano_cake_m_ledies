@@ -15,13 +15,16 @@ class Customers::CartItemsController < ApplicationController
   # 商品追加
   def create
     @cart_item = current_customer.cart_items.new(cart_item_params)
-    if @cart_item.present?
-      @cart_item.amount += params[:cart_item][:amount].to_i
-      @cart_item.save!
+
+    if !@cart_item.amount.nil?   #個数が空っぽの場合は
+      # @cart_item.amount += params[:cart_item][:amount].to_i  #既にある情報に個数を合算
+       @cart_item.save!
       redirect_to customers_cart_items_path, notice: 'カート内に商品が追加されました'
+    else
+      redirect_to customers_item_path(@cart_item.item), notice: 'カートに商品を入れて下さい'
     end
-  end  
-    
+  end
+
   # 商品を１つ削除
   def destroy
     @cart_item = CartItem.find(params[:id])

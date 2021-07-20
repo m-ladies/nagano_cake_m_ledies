@@ -1,22 +1,27 @@
 <div class="container">
   <div class="row" style="margin: 30px 0 40px 0;">
     <div class="col-md-2"></div>
-    
+
     <div class=" col-md-9">
       <div class="row">
         <div class="col-md-3 text-left">
           <%= attachment_image_tag @item, :image, :fill, 400, 250, format: 'jpeg', fallback: "no_image.jpg", size: "400x250" %>
         </div>
-        <div class="col-md-3 text-left">
+      
+        <div class="row"></div>
+          <div class="col d-flex align-items-center">
           <h3><strong><%= @item.name %></strong></h3>
+          </div>
         </div>
+      
+      
         <div class="col-md-3 text-left">
           <%= @item.introduction %>
         </div>
         <div class="col-md-3 text-left">
           <h4>¥<%= @item.price.to_s(:delimited) %></h4>
         </div>
-        
+
         <div class="col-md-3 text-left">
           <%= form_with model: @cart_item, url:customers_cart_items_path, local:true do |f| %>
             <%= f.select :amount, options_for_select((1..10).to_a), include_blank: "個数選択" %>
@@ -24,8 +29,8 @@
             <%= f.submit "カートに入れる", class: "glyphicon glyphicon-shopping-cart btn btn-primary" %>
           <% end %>
         </div>
-        
+
       </div>
     </div>
   </div>
-</div>  
+</div>
