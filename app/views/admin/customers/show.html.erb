@@ -44,7 +44,7 @@
             <td>メールアドレス</td>
             <td><%= @customer.email %></td>
             </tr>
-            
+
            <tr>
             　<td>ステータス</td>
             　<td><% if @customer.is_deleted == true %>
@@ -58,8 +58,7 @@
       </table>
 　　<div class="col-sm-3 my-auto">
       <%= link_to "編集する", edit_admin_customer_path, class: "btn btn-success" %>
-      <%= link_to "注文履歴一覧を見る", admin_root_path, class: "btn btn-primary mt-5" %>
+      <%= link_to "注文履歴一覧を見る", admin_homes_top_path, class: "btn btn-primary mt-5" %>
    </div>
 </div>
- 　　　
-    
+

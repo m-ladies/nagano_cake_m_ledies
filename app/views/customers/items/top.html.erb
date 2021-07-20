@@ -14,6 +14,7 @@
           <div class="col-md-2.5" style="margin-left: 80px;">
             <div class="row">
               <div class="col-md-12 text-left">
+                <%= attachment_image_tag item, :image, :fill, 170, 100, format: 'jpeg', fallback: "no_image.jpg", size: "170x100" %>
                 <%= link_to customers_item_path(item.id) do %>
                 <% end %>
               </div>
