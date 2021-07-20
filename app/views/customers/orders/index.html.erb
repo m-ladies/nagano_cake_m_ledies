@@ -1,48 +1,59 @@
-<div calss="row">
-  <div class="col-xs-12">
-    <h2 class="head-line title_h2 text-center">注文履歴一覧</h2>
-      <% if @orders.present? %>
-        <table class="table table-bordered">
-          <thead>
-            <tr class="info">
-              <th><i class="fas fa-calendar-day"></i>注文日</th>
-              <th>配送先</th>
-              <th>注文商品</th>
-              <th>支払金額</th>
-              <th>ステータス</th>
-              <th>注文詳細</th>
-            </tr>
-          </thead>
-          
-          <tbody>
-            <% @orders.each do |order| %>
-            <tr>
-              <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-              <td class="text-left">
-                <%= order.postal_code %><br>
-    		        <%= order.address %><br>
-    		        <%= order.name %>
-              </td>
-              <td>
-                <% order.order_details.each do |order_detail| %>
-    		          	<%= order_detail.item.name %><br>
-    		        <% end %>
-              </td>
-              <td class="text-right">
-                <%= order.total_payment.to_s(:delimited) %>円   <%# :delimitedで2,400円のようにカンマが付く%>   
-              </td>
-              <td>
-                <%= order.order_status %>
-              </td>
-              <td>
-                <%= link_to "注文詳細", customers_order_path(order), class: "glyphicon glyphicon-zoom-in btn btn-success" %>
-              </td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <% else %>
-        <p>注文履歴がありません。</p>
-      <% end %>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-1"></div>
+    <div class="col-md-2 text-center">
+      <h4 style="background-color: #cd5c5c; color: white;">注文履歴一覧</h4>
     </div>
+  </div>
+
+	<div class="row mt-4">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr class="table-secondary">
+            <th>注文日</th>
+            <th>配送先</th>
+            <th>注文商品</th>
+            <th>支払金額</th>
+            <th>ステータス</th>
+            <th>注文詳細</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% if @orders.present? %>
+          <% @orders.each do |order| %>
+            <tr>
+              <td>
+                <%= order.created_at.strftime('%Y/%m/%d') %>
+              </td>
+              <td>
+                〒<%= order.postal_code %><br>
+                <%= order.address %><br>
+                <%= order.name %>
+              </td>
+              <td>
+              <% order.order_items.each do |order_item| %>
+                  <a><%= order_item.item.name %></a><br>
+              <% end %>
+              </td>
+              <td>
+                <%= total_payment(order.order_items) %>
+              </td>
+              <td>
+                <%= order.status %>
+              </td>
+              <td>
+                <%= link_to "表示する", public_order_path(order.id), class:"btn btn-primary" %>
+              </td>
+            </tr>
+          <% end %>
+          <% else %>
+        <p>注文履歴がありません。</p>
+        <% end %>
+  			</tbody>
+  		</table>
+	  </div>
+	</div>
 </div>
+      
+    

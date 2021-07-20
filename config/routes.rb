@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-
   root 'customers/items#top'
   get 'items' => 'customers/items#about'
 
@@ -22,15 +20,10 @@ Rails.application.routes.draw do
     resources :orders, only: [:show]
     resources :genres,only: [:index,:create,:edit,:update]
     get "orders/top" => "orders#top"
-    
-
   end
 
 
   # 顧客
-=======
-
-  # customer
   devise_for :customers, controllers: {
   sessions:      'customers/sessions',
   passwords:     'customers/passwords',
@@ -46,13 +39,14 @@ Rails.application.routes.draw do
       end 
     end
     
-      # get=データを取得する処理、patch=情報を更新する(SQLでいうupdate)
-      resource :customers,only: [:show, :edit] do
-        collection do
-          get 'quit'   
-          patch 'out'
-        end
-      # collection=　resourcesでは自動生成されないものに使う。生成するroutingに:idがつかない。
+    # get=データを取得する処理、patch=情報を更新する(SQLでいうupdate)
+    resources :customers,only: [:show, :edit, :update] do
+      collection do
+        get 'quit'   
+        patch 'out'
+      end
+    end
+    # collection=　resourcesでは自動生成されないものに使う。生成するroutingに:idがつかない。
 
     resources :orders,only: [:new,:index,:show,:create] do
       collection do
@@ -62,8 +56,7 @@ Rails.application.routes.draw do
     end
     # post=URLが保存可、get=URL保存不可
    
-    resources :address,only: [:index,:create,:destroy,:edit,:update]
+    resources :addresses,only: [:index,:create,:destroy,:edit,:update]
     end  
 
   end
-end

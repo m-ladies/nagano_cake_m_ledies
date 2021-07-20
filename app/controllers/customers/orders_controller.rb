@@ -3,98 +3,70 @@ class Customers::OrdersController < ApplicationController
 # before_action :to_log, only: [:show]
 # before_action :authenticate_customer!
 
-#   def new
-#   	@order = Order.new
-#   	@address = Address.where(customer: current_customer)
-#   end
-
-  def log
-    @cart_items = current_cart
-    @order = Order.new(
-    customer: current_customer,
-    payment_method: params[:order][:payment_method]
-    )
-
-    # total_paymentに請求額を代入
-    @order.total_payment = billing(@order)
-
-    # addressに会員の値がはいっていれば
-    if params[:order][:address] == "current_customer.address"
-      @order.postal_code = current_customer.postal_code
-      @order.address     = current_customer.residence
-      @order.name        = current_customer.last_name +
-                           current_customer.first_name
-
-    # addressにaddresses(配送先)の値がはいっていれば
-    elsif params[:order][:address] == "addresses"
-      ship = Address.find(params[:order][:address_id])
-      @order.postal_code = ship.postal_code
-      @order.address     = ship.address
-      @order.name        = ship.name
-
-    # addressにnew_addressの値がはいっていれば
-    elsif params[:order][:address] == "new_address"
-      @order.postal_code = params[:order][:postal_code]
-      @order.address     = params[:order][:address]
-      @order.name        = params[:order][:name]
-      @ship = "1"
-
-      # バリデーションがあるならエラーメッセージを表示
-      unless @order.valid? == true
-        @address = Address.where(customer: current_customer)
-        render :new
-      end
-    end
+  def new
+    @order = Order.new
   end
 
-	def create
-    @order = current_customer.orders.new(order_params)
+  def to_log
+    @orders = Order.all
+    @shipping_cost = 800
+    @order = Order.new(order_params)
+    if params[:order][:address_status] == "0"
+      @order.postal_code = current_customer.postal_code
+      @order.address = current_customer.address
+      @order.name = current_customer.last_name + current_customer.first_name
+    elsif params[:order][:address_status] == "1"
+      @address = Address.find(params[:order][:address_id])
+      @order.postal_code = @address.postal_code
+      @order.address = @address.address
+      @order.name = @address.name
+    elsif params[:order][:address_status] == "2"
+      @order.postal_code = params[:order][:postal_code]
+      @order.address = params[:order][:address]
+      @order.name = params[:order][:name]
+    #カスタマーの住所登録と入力内容の確認
+      @address = current_customer.addresses.build
+      @address.postal_code = params[:order][:postal_code]
+      @address.address = params[:order][:address]
+      @address.name = params[:order][:name]
+      @address.save
+    end
+    @cart_items = current_customer.cart_items
+  end
+
+  def create
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    @order.status = "入金待ち"
     @order.save
-    flash[:notice] = "ご注文が確定しました。"
-    redirect_to thanx_customers_orders_path
-
-    # もし情報入力でnew_addressの場合ShippingAddressに保存
-    if params[:order][:ship] == "1"
-      current_customer.address.create(address_params)
-    end
-
-    # カート商品の情報を注文商品に移動
-    @cart_items = current_cart
+    @cart_items = current_customer.cart_items
     @cart_items.each do |cart_item|
-    OrderDetail.create(
-      item:  cart_item.item,
-      order:    @order,
-      amount: cart_item.amount,
-      subprice: sub_price(cart_item)
-    )
+      OrderItem.create(
+        item_id: cart_item.item.id,
+        order_id: @order.id,
+        amount: cart_item.amount,
+        sub_price: cart_item.item.price
+      )
     end
-    # 注文完了後、カート商品を空にする
-    @cart_items.destroy_all
-	end
+    CartItem.destroy_all
+    redirect_to complete_public_orders_path
+  end
 
-	def thanx
-	end
+  def thanx
+  end
 
-	def index
+  def index
     @orders = current_customer.orders
-	end
+  end
 
-	def show
-	  @order = Order.find(params[:id])
-    @order_details = @order.order_details
-	end
+  def show
+    @order = Order.find(params[:id])
+    @order_items = @order.order_items
+  end
 
   private
 
   def order_params
-    params.require(:order).permit(:postal_code, :address, :name, :payment_method, :total_payment)
-  end
-
-  def address_params
-    params.require(:order).permit(:postal_code, :address, :name)
-  end
-
-  def to_log
-    redirect_to customers_cart_items_path if params[:id] == "log"
+    params.require(:order).permit( :address, :postal_code, :name, :payment_method, :total_payment, :order_status, :address_status, :shipping_cost)
   end
 end

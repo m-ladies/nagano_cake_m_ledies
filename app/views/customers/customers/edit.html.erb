@@ -4,7 +4,7 @@
 
     <h2 class="head-line title_h2 text-center">登録情報編集</h2>
 
-    <%= form_with(model:@customer, url:customers_customers_path, local: true ,method: :put) do |f| %>
+    <%= form_with(model:@customer, url:customers_customer_path, local: true ,method: :put) do |f| %>
       <!--%= render "layouts/error_messages", resource: @customer %-->
 
       <div class="col-xs-10">
@@ -42,7 +42,7 @@
       </div>
     <% end %>
     <div class="col-xs-12">
-      <%= link_to "戻る", customers_customers_path, class: "glyphicon glyphicon-home btn btn-info" %>
+      <%= link_to "戻る", customers_customer_path, class: "glyphicon glyphicon-home btn btn-info" %>
     </div>
   </div>
 </div>
