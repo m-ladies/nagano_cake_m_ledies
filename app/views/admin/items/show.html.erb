@@ -38,8 +38,12 @@
         <p>税込価格<br>(税抜価格)</p>
       </div>
       <div class="col-md-8 text-left">
-        <%= @item.add_tax_price.to_s(:dalimited) %>
-        (<%= @item.price %>)円
+        <%= @item.price %>
+        (<%= @item.add_ex_price.to_s(:dalimited) %>)円
+
+        <!--price=税抜き価格とした場合-->
+        <!--<%#= @item.add_tax_price.to_s(:dalimited) %>-->
+        <!--(<%#= @item.price %>)円-->
       </div>
     </div>
     <div class="row" style="margin: 30px 0 35px 0;">
