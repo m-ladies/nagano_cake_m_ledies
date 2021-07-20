@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-
   root 'customers/items#top'
   get 'items' => 'customers/items#about'
 
@@ -21,8 +19,6 @@ Rails.application.routes.draw do
     resources :customers
     resources :orders, only: [:show]
     resources :genres,only: [:index,:create,:edit,:update]
-
-
   end
 
 
@@ -35,22 +31,22 @@ Rails.application.routes.draw do
 }
 
   namespace :customers do
-
-
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :update, :create, :destroy] do
       collection do
         delete 'all_destroy'
       end
     end
+    
+    # get=データを取得する処理、patch=情報を更新する(SQLでいうupdate)
+    resources :customers,only: [:show, :edit, :update] do
+      collection do
+        get 'quit'   
+        patch 'out'
+      end
+    end
+    # collection=　resourcesでは自動生成されないものに使う。生成するroutingに:idがつかない。
 
-      # get=データを取得する処理、patch=情報を更新する(SQLでいうupdate)
-      resources :customers,only: [:show, :edit, :update] do
-        collection do
-          get 'quit'
-          patch 'out'
-        end
-      # collection=resourcesでは自動生成されないものに使う。生成するroutingに:idがつかない。
 
     resources :orders,only: [:new,:index,:show,:create] do
       collection do
@@ -59,9 +55,10 @@ Rails.application.routes.draw do
       end
     end
     # post=URLが保存可、get=URL保存不可
-
-    resources :address,only: [:index,:create,:destroy,:edit,:update]
-    end
-
-  end
+   
+    resources :addresses,only: [:index,:create,:destroy,:edit,:update]
+  end 
 end
+
+
+    
