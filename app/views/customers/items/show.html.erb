@@ -14,11 +14,11 @@
           <%= @item.introduction %>
         </div>
         <div class="col-md-3 text-left">
-          <h4>¥　<%= @item.price.to_s(:delimited) %></h4>
+          <h4>¥<%= @item.price.to_s(:delimited) %></h4>
         </div>
         
         <div class="col-md-3 text-left">
-          <%= form_with model @item, url:customers_cart_items_path, local:true do |f| %>
+          <%= form_with model: @cart_item, url:customers_cart_items_path, local:true do |f| %>
             <%= f.select :amount, options_for_select((1..10).to_a), include_blank: "個数選択" %>
             <%= f.submit "カートに入れる", class: "glyphicon glyphicon-shopping-cart btn btn-primary" %>
           <% end %>

@@ -35,21 +35,21 @@ Rails.application.routes.draw do
 }
 
   namespace :customers do
-    resources :items, only:[:index, :show]
 
-    resources :cart_items, only:[:index, :update, :create, :destroy] do
+    resources :items, only: [:index, :show]
+    resources :cart_items, only: [:index, :update, :create, :destroy] do
       collection do
         delete 'all_destroy'
       end
     end
 
       # get=データを取得する処理、patch=情報を更新する(SQLでいうupdate)
-      resource :customers,only: [:show, :edit] do
+      resources :customers,only: [:show, :edit, :update] do
         collection do
           get 'quit'
           patch 'out'
         end
-      # collection=　resourcesでは自動生成されないものに使う。生成するroutingに:idがつかない。
+      # collection=resourcesでは自動生成されないものに使う。生成するroutingに:idがつかない。
 
     resources :orders,only: [:new,:index,:show,:create] do
       collection do
