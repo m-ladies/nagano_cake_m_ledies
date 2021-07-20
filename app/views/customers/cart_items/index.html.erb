@@ -25,6 +25,7 @@
                             <td>
                                 <%= form_with model: cart_item, url: customers_cart_item_path(cart_item.id), local:true do |f| %>
                                 <%= f.number_field :amount %>
+
                                 <%= f.hidden_field :item_id, :value => cart_item.item.id %>
                                 <%= f.submit "変更" %>
                             </td>
