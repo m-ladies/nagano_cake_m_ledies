@@ -11,7 +11,7 @@
   
   <header class="navbar navbar-fixed-top">
       <div class="container">
-  </header>
+  
 
   <body> 　　　　<!--顧客側-->
 
@@ -20,7 +20,7 @@
         ようこそ<%= current_customer.last_name %>さん！
       </li>
       <li>
-        <%= link_to "マイページ", class: 'nav-link  badge badge-pill badge-light' %>
+        <%= link_to "マイページ", customers_customer_path(current_customer.id), class: 'nav-link  badge badge-pill badge-light' %>
       </li>
       <li>
         <%= link_to "商品一覧", customers_items_path, class: 'nav-link  badge badge-pill badge-light' %>
@@ -48,5 +48,6 @@
     <% end %>
 
     <%= yield %>
+  </header>  
   </body>
 </html>
