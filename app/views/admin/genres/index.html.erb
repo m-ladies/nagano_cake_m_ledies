@@ -1,11 +1,22 @@
 <div class="container">
-   <h2>ジャンル一覧・追加</h2>
+ <div class="row">
+  <div class="col-md-3" style="margin: 30px 0 30px 0;">
+   <h3 style="background-color: #ff66cc; color: white;">ジャンル一覧・追加</h3>
+   </div>
+   </div>
    <!--ジャンル追加フォーム-->
-   <div class="row">
     <%= form_with url:admin_genres_path, model:@genre_new, local:true do |f| %>
-     <span>ジャンル名</span>
-     <%= f.text_field :name %>
+    <!--rowにform入れると縦に並んでしまうから注意-->
+    <div class="row" style="margin: 20px 0 35px 0;">
+    <div class="col-md-2 text-center">
+     <h6>ジャンル名</h6>
+     </div>
+     <div class="col-md-4">
+     <%= f.text_field :name, :size=>"30×5" %>
+     </div>
+     <div class="col-md-3">
      <%= f.submit "新規登録", class: "btn btn-success" %>
+     </div>
     <% end %>
    </div>
    <!--ジャンル一覧-->
