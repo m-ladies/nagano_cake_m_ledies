@@ -8,13 +8,13 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  
+
   <header class="navbar navbar-fixed-top">
       <div class="container">
+
+
   
 
-  <body>
-    
     <% if customer_signed_in? %>
 
       <li>
@@ -32,8 +32,7 @@
       <li>
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link  badge badge-pill badge-light' %>
       </li>
-    　
-    
+
       <% elsif admin_signed_in? %>
 
 
@@ -67,13 +66,13 @@
         </li>
         <% end %>
       </ul>
-      
+
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-  
+ </header>
+  <body>
     <%= yield %>
-  </header>  
   </body>
 </html>
