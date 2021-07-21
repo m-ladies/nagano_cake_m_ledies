@@ -3,16 +3,21 @@ class Admin::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @items_total_price = calculate(@order)
     @order_details = @order.order_details.all
   end
-
-  def create
-    session[:payment] = params[:payment]
+  
+  def update
+    
   end
+
 
  private
 	def order_params
-		  params.require(:order).permit(:order_status)
+	  params.require(:order).permit(:order_status)
 	end
+	
+	def order_detail_params
+	  params.require(:order_detail).permit(:making_status)
+  end
+  
 end

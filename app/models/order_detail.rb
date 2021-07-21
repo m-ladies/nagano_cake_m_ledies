@@ -1,19 +1,6 @@
 class OrderDetail < ApplicationRecord
   belongs_to :order
   belongs_to :item
-
-  # 小計
-  def sub_price(sub)
-    sub.item.price * sub.amount
-  end
-  
-  # 商品合計
-  def total_price(totals)
-    price = 0                   
-    totals.each do |total|
-      price += sub_price(total)
-    end
-    return price
-  end
-
+  enum order_status: { "入金待ち": 0, "入金確認": 1, "製作途中": 2, "発送準備中": 3, "発送済み": 4}
+  enum making_status: { "着手不可": 0, "製作待ち": 1, "製作中": 2, "製作完了": 3}
 end
