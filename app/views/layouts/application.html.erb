@@ -11,7 +11,7 @@
   
   <header class="navbar navbar-fixed-top">
       <div class="container">
-  </header>
+  
 
   <body>
     
@@ -21,7 +21,7 @@
         ようこそ<%= current_customer.last_name %>さん！
       </li>
       <li>
-        <%= link_to "マイページ",customers_customer_path(current_customer.id), class: 'nav-link  badge badge-pill badge-light' %>
+        <%= link_to "マイページ", customers_customer_path(current_customer.id), class: 'nav-link  badge badge-pill badge-light' %>
       </li>
       <li>
         <%= link_to "商品一覧", customers_items_path, class: 'nav-link  badge badge-pill badge-light' %>
@@ -32,8 +32,10 @@
       <li>
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link  badge badge-pill badge-light' %>
       </li>
+    　
     
       <% elsif admin_signed_in? %>
+
 
         <li class="nav-item">
           <%= link_to "商品一覧", admin_items_path, class: "nav-link" %>
@@ -64,9 +66,14 @@
           <%= link_to "ログイン", new_customer_session_path, class: 'nav-link  badge badge-pill badge-light' %>
         </li>
         <% end %>
-      </ul
+      </ul>
+      
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
   
-    
     <%= yield %>
+  </header>  
   </body>
 </html>
