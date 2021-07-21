@@ -1,5 +1,5 @@
-class ChangeOrdersStatusOfOrders < ActiveRecord::Migration[5.2]
-  def update
+class ChangeOrderStatusOfOrders < ActiveRecord::Migration[5.2]
+  def up
     change_column :orders, :order_status, :integer, default: 0
   end
   

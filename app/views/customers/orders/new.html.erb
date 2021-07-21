@@ -9,7 +9,7 @@
     <%# render "layouts/error_messages", resource: @order%>
   <%# if current_customer.items.present? %>
 
-    <%= form_with model: @order, url: log_customers_orders_path, method: :post, local:true do |f| %>
+    <%= form_with model: @order, url: to_log_customers_orders_path, method: :post, local:true do |f| %>
 
           <div class="row">
             <div class="col-md-1"></div>
@@ -24,7 +24,7 @@
                   <div class="col-md-1"></div>
                   <div class="col-md-11 text-left">
                     <h5 style="font-size: 25px;">
-                      <%= f.radio_button :payment_method, "クレジットカード", checked: true %>
+                      <%= f.radio_button :payment_method, "クレジットカード", checked: "checked" %>
                       <%= f.label "クレジットカード" %>
                       <br>
                       <%= f.radio_button :payment_method, "銀行振込" %>
@@ -43,7 +43,7 @@
                   <div class="col-md-1"></div>
                   <div class="col-md-11 text-left">
                     <h5 style="font-size: 25px;">
-                      <%= f.radio_button :address_status, "0", checked: true %>
+                      <%= f.radio_button :address_status, "0", checked: "checked" %>
                       <%= f.label :address, :"ご自身の住所" %>
                     </h5>
 
@@ -51,7 +51,8 @@
                       <h5 style="font-size: 25px;">
                         〒<%= current_customer.postal_code %>
                           <%= current_customer.address %><br>
-                          <%#= current_customer.name %>
+                          <%= current_customer.last_name %>
+                          <%= current_customer.first_name %>
                       </h5>
                     </div>
                   </div>
@@ -83,7 +84,7 @@
                           <%= f.label "郵便番号(ハイフンなし)" %>
                         </div>
                         <div class="col-md-5 text-left">
-                          <%= f.text_field :postal_code, aurofocus: true, placeholder: "0000000", size: 25 %>
+                          <%= f.text_field :postal_code, autofocus: true, placeholder: "0000000", size: 25 %>
                         </div>
                       </div>
                     <div class="row" style="font-size: 16px; margin: 10px 0 0 20px;">
@@ -91,7 +92,7 @@
                           <%= f.label :住所 %>
                         </div>
                         <div class="col-md-5 text-left" style="margin-left: 4px;">
-                          <%= f.text_field :address, aurofocus: true, placeholder: "東京都新宿区新宿0-0", size: 57 %>
+                          <%= f.text_field :address, autofocus: true, placeholder: "東京都新宿区新宿0-0", size: 57 %>
                         </div>
                       </div>
 

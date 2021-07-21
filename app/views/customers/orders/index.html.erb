@@ -32,16 +32,17 @@
                 <%= order.name %>
               </td>
               <td>
-              <% order.order_items.each do |order_item| %>
-                  <a><%= order_item.item.name %></a><br>
+              <% order.order_details.each do |order_detail| %>
+                  <a><%= order_detail.item.name %></a><br>
               <% end %>
               </td>
               <td>
-                <%= total_payment(order.order_items) %>
+                <%= order.total_payment %>
               </td>
               <td>
-                <%= order.status %>
+                <%= order.order_status %>
               </td>
+             
               <td>
                 <%= link_to "表示する", customers_order_path(order.id), class:"btn btn-primary" %>
               </td>
