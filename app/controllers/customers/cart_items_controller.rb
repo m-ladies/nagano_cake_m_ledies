@@ -17,7 +17,7 @@ class Customers::CartItemsController < ApplicationController
     @cart_item = current_customer.cart_items.new(cart_item_params)
 
     if !@cart_item.amount.nil?   #個数が空っぽの場合は
-      # @cart_item.amount += params[:cart_item][:amount].to_i  #既にある情報に個数を合算
+      
        @cart_item.save!
       redirect_to customers_cart_items_path, notice: 'カート内に商品が追加されました'
     else
