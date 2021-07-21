@@ -37,11 +37,11 @@ Rails.application.routes.draw do
         delete 'all_destroy'
       end
     end
-    
+
     # get=データを取得する処理、patch=情報を更新する(SQLでいうupdate)
     resources :customers,only: [:show, :edit, :update] do
       collection do
-        get 'quit'   
+        get 'quit'
         patch 'out'
       end
     end
@@ -55,7 +55,7 @@ Rails.application.routes.draw do
       end
     end
     # post=URLが保存可、get=URL保存不可
-   
+
     resources :addresses,only: [:index,:create,:destroy,:edit,:update]
-  end 
+  end
 end

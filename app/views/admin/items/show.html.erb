@@ -1,6 +1,6 @@
 <div class="container">
   <div class="col-md-2 text-center" style="margin: 30px 0 35px 0;">
-    <h5 style="background-color: #cd5c5c; color: white;">商品詳細</h5>
+    <h5 style="background-color: #ff66cc; color: white;">商品詳細</h5>
   </div>
   <div class="row">
     <div class="col-md-5 text-center" style="margin: 30px 0 35px 0;">
@@ -38,8 +38,13 @@
         <p>税込価格<br>(税抜価格)</p>
       </div>
       <div class="col-md-8 text-left">
-        <%= @item.add_tax_price.to_s(:dalimited) %>
-        (<%= @item.price %>)円
+        <%= @item.price.to_s(:delimited) %>円
+        <br>
+        (<%= @item.add_ex_price.to_s(:delimited) %>)
+
+        <!--price=税抜き価格とした場合-->
+        <!--<%#= @item.add_tax_price.to_s(:dalimited) %>-->
+        <!--(<%#= @item.price %>)円-->
       </div>
     </div>
     <div class="row" style="margin: 30px 0 35px 0;">
