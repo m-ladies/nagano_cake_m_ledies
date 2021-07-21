@@ -5,7 +5,7 @@
     </div>
   </div>
 <% if current_customer.cart_items.present? %>
-  <%= form_with model: @order, url: public_orders_path, local:true do |f| %>
+  <%= form_with model: @order, url: customers_orders_path, local:true do |f| %>
   <div class="row">
     <div class="col-md-8 text-center" style="margin: 30px 0 35px 0;">
       <table class="table">
@@ -34,7 +34,7 @@
           </td>
           <td>
             <div style="margin-top: 18px;">
-              <%= cart_item.price.to_s(:delimited) %>
+              <%= cart_item.item.price.to_s(:delimited) %>
             </div>
           </td>
           <td>
@@ -44,8 +44,8 @@
           </td>
           <td>
             <div style="margin-top: 18px;">
-              <% @subtotal = cart_item.amount * cart_item.item.price %>
-              <%= @subtotal.to_s(:delimited) %>
+              <!--ordersヘルパーに記述した計算式を呼び出す-->
+              <%= sub_price(cart_item).to_s(:delimited) %>
             </div>
           </td>
         </tbody>
@@ -66,14 +66,15 @@
             </tr>
             <tr>
               <th class="table-secondary">商品合計</th>
-              <th><%= @sum.to_s(:delimited) %></th>
+               <!--ordersヘルパーに記述した計算式を呼び出す-->
+              <th><%= total_price(@cart_items).to_s(:delimited) %></th>
             </tr>
             <tr>
               <th class="table-secondary">請求金額</th>
               <th>
                 <% @total = @sum + @shipping_cost %>
                 <%= @total.to_s(:delimited) %>
-                <%= f.hidden_field :total_payment, value: @total.to_s(:delimited) %>
+                <%= f.hidden_field :total_payment, value: @total %>
               </th>
             </tr>
           </tbody>

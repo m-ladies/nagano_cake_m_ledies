@@ -41,7 +41,7 @@
 
     	      <tr>
     		    	<td class="table-secondary">ステータス</td>
-    		    	<td><%= @order.status %></td>
+    		    	<td><%= @order.order_status %></td>
     	      </tr>
     	    </table>
     	 </div>
@@ -61,14 +61,11 @@
     	    	 <tr>
     		    	<td class="table-secondary">商品合計</td>
     		    	<td>
-    		    	  <% @item_total = 0 %>
-    		    		<% order_items.each do |order_item| %>
-    		    		  <% @item_total =+ sub_total(order_item) %>
-    		    		<% end %>
-    		    		<%= @item_total.to_s(:delimited) %>
+    		    	  <!--ヘルパーに記述した計算式を呼び出す-->
+    		    		  <%= total_price(@order_details).to_s(:delimited) %>
     		    	</td>
     	      </tr>
-
+    	      
     	      <tr>
     		    	<td class="table-secondary">配送料</td>
     		    	<td>
@@ -78,7 +75,8 @@
 
     	      <tr>
     		    	<td class="table-secondary"><strong>ご請求額</strong></td>
-    		    	<td><%= total_payment(order_items).to_s(:delimited) %></td>
+    		    	<!--ヘルパーに記述した計算式を呼び出す-->
+    		    	<td><%= @order.total_payment.to_s(:delimited) %></td>
     	      </tr>
     	    </table>
     	 </div>
@@ -106,12 +104,12 @@
                 <th colspan="3" style="width: 10%;">小計</th>
               </tr>
             </thead>
-            <% order_items.each do |oi| %>
+            <% @order_details.each do |od| %>
              <tbody>
-               <td><%= oi.item.name %></td>
-               <td><%= price.to_s(:delimited) %></td>
-               <td><%= oi.amount %></td>
-               <td><%= sub_total(oi).to_s(:delimited) %></td>
+               <td><%= od.item.name %></td>
+               <td><%= od.price.to_s(:delimited) %></td>
+               <td><%= od.amount %></td>
+               <td><%= sub_price(od).to_s(:delimited) %></td>
              </tbody>
             <% end %>
           </table>
