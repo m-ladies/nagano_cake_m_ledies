@@ -8,20 +8,19 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  
+
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
   <header class="navbar navbar-fixed-top">
       <div class="container">
-  </header>
 
-  <body>
-    
     <% if customer_signed_in? %>
 
       <li>
         ようこそ<%= current_customer.last_name %>さん！
       </li>
       <li>
-        <%= link_to "マイページ",customers_customer_path(current_customer.id), class: 'nav-link  badge badge-pill badge-light' %>
+        <%= link_to "マイページ", customers_customer_path(current_customer.id), class: 'nav-link  badge badge-pill badge-light' %>
       </li>
       <li>
         <%= link_to "商品一覧", customers_items_path, class: 'nav-link  badge badge-pill badge-light' %>
@@ -32,8 +31,9 @@
       <li>
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link  badge badge-pill badge-light' %>
       </li>
-    
+
       <% elsif admin_signed_in? %>
+
 
         <li class="nav-item">
           <%= link_to "商品一覧", admin_items_path, class: "nav-link" %>
@@ -65,13 +65,21 @@
         </li>
         <% end %>
       </ul>
-  <main>
+    
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+ </header>
+  
+    <main>
      <% if flash[:notice] %>
     <p class="alert alert-success">
   　   <%= flash[:notice] %>
     </p>
       <% end %>
-  </main>
+    </main>
+  <body>
     
     <%= yield %>
   </body>
