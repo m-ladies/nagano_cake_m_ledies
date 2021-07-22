@@ -9,8 +9,13 @@ class Customers::AddressesController < ApplicationController
   def create
 	  @address = Address.new(address_params)
 	  @address.customer_id = current_customer.id
-    @address.save
-	  redirect_to customers_addresses_path, notice: '新規配送先を登録しました'
+      if @address.save
+	      redirect_to customers_addresses_path, notice: '新規配送先を登録しました'
+      else
+        @customer = current_customer
+        @addresses = @customer.addresses.all
+        render "index"
+      end
   end
 
   def edit

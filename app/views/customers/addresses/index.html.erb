@@ -6,6 +6,15 @@
       <h5 style="background-color: #cd5c5c; color: white;">配送先登録/一覧</h5>
     </div>
   </div>
+  
+<% if @address.errors.any? %>
+  <ul class="error_messages">
+    <h3><%= @address.errors.count %>errors prohibited this user from being saved:</h3>
+        <% @address.errors.full_messages.each do |message| %>
+        <%= message %>
+        <% end %>
+  </ul>
+<% end %>
 
   <%= form_with model: @address, url: customers_addresses_path, local:true do |f| %>
     <div class="row" style="font-size: 16px;">
