@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
+
 ActiveRecord::Schema.define(version: 2021_07_21_081449) do
+
 
   create_table "addresses", force: :cascade do |t|
     t.datetime "created_at", null: false

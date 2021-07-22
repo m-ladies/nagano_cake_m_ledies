@@ -14,9 +14,6 @@
   <header class="navbar navbar-fixed-top">
       <div class="container">
 
-
-  
-
     <% if customer_signed_in? %>
 
       <li>
@@ -67,7 +64,6 @@
           <%= link_to "ログイン", new_customer_session_path, class: 'nav-link  badge badge-pill badge-light' %>
         </li>
         <% end %>
-      </ul>
 
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
