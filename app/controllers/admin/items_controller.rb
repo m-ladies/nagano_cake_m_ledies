@@ -22,7 +22,9 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save!
+    if @item.save
+      # !ついたままだとエラー出たから削除した
+     flash[:notice] = "新商品を登録しました"
      redirect_to admin_item_path(@item.id)
     else
       @genres = Genre.all
@@ -33,6 +35,7 @@ class Admin::ItemsController < ApplicationController
   def update
    @item = Item.find(params[:id])
    if @item.update(item_params)
+      flash[:notice] = "商品内容をを変更しました"
       redirect_to admin_item_path(@item.id)
    else
      @genres = Genre.all
