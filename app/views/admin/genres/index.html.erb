@@ -1,11 +1,17 @@
 <div class="container">
+ <% if @genre.errors.any? %>
+  <%= @genre.errors.count %>件のエラーが発生しました
+   <% @genre.errors.full_messages.each do |message| %>
+   <%= message %>
+  <% end %>
+<% end %>
  <div class="row">
   <div class="col-md-3" style="margin: 30px 0 30px 0;">
    <h3 style="background-color: #ff66cc; color: white;">ジャンル一覧・追加</h3>
    </div>
    </div>
    <!--ジャンル追加フォーム-->
-    <%= form_with url:admin_genres_path, model:@genre_new, local:true do |f| %>
+    <%= form_with url:admin_genres_path, model:@genre, local:true do |f| %>
     <!--rowにform入れると縦に並んでしまうから注意-->
     <div class="row" style="margin: 20px 0 35px 0;">
     <div class="col-md-2 text-center">

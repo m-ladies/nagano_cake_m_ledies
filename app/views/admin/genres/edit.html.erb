@@ -1,4 +1,10 @@
 <h2 class="head-line title_h2 text-center" >ジャンル編集</h2>
+<% if @genre.errors.any? %>
+     <%= @genre.errors.count %>件のエラーが発生しました
+     <% @genre.errors.full_messages.each do |message| %>
+         <%= message %>
+     <% end %>
+<% end %>
 <!--urlにはしたいアクションのpathを書く-->
 <%= form_with model:@genre, url:admin_genre_path(@genre), local:true do |f| %>
      <div>
