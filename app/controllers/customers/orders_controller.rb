@@ -8,7 +8,6 @@ class Customers::OrdersController < ApplicationController
   end
 
   def to_log
-    # binding.pry
     @orders = Order.all
     @shipping_cost = 800
     @order = Order.new(order_params)
@@ -36,22 +35,21 @@ class Customers::OrdersController < ApplicationController
   end
 
   def create
-    # binding.pry
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    @order.total_payment = params[:order][:total_payment]
+    @order.status = "入金待ち"
     @order.save
     @cart_items = current_customer.cart_items
     @cart_items.each do |cart_item|
-      OrderDetail.create(
+      OrderItem.create(
         item_id: cart_item.item.id,
         order_id: @order.id,
         amount: cart_item.amount,
-        price: cart_item.item.price
+        sub_price: cart_item.item.price
       )
-     end
-    @cart_items.destroy_all
-    redirect_to thanx_customers_orders_path
+    end
+    CartItem.destroy_all
+    redirect_to complete_public_orders_path
   end
 
   def thanx
@@ -63,21 +61,12 @@ class Customers::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_details = @order.order_details
-    @cart_items = current_customer.cart_items
-    @cart_items.each do |cart_item|
-      OrderDetail.create(
-        item_id: cart_item.item.id,
-        order_id: @order.id,
-        amount: cart_item.amount,
-        price: cart_item.item.price
-      )
-    end
+    @order_items = @order.order_items
   end
 
   private
 
   def order_params
-    params.require(:order).permit( :address, :postal_code, :name, :payment_method, :total_payment, :order_status, :shipping_cost)
+    params.require(:order).permit( :address, :postal_code, :name, :payment_method, :total_payment, :order_status, :address_status, :shipping_cost)
   end
 end

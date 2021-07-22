@@ -17,8 +17,10 @@ Rails.application.routes.draw do
     get "homes/top" => "homes#top"
     resources :items
     resources :customers
-    resources :orders, only: [:show]
+    resources :orders,only: [:show, :update]
     resources :genres,only: [:index,:create,:edit,:update]
+    resources :order_details,only: [:update]
+
   end
 
 
