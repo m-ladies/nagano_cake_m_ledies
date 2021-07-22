@@ -1,11 +1,18 @@
 <div class="container">
-<div class="row">
+  <div class="row mt-5">
+    <div class="col-md-1"></div>
+    <div class="col-md-2 text-center">
+      <h4 style="background-color: #cd5c5c; color: white;"></h4>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
 	<div class="col-xs-offset-1 col-xs-8">
 		<h2 class="head-line text-center title_h2">マイページ</h2>
 		<p><strong class="information-link"><i class="far fa-user"></i>登録情報</strong>
-			<%= link_to " 編集する", edit_customers_customer_path, class: "glyphicon glyphicon-pencil btn btn-success" %>
-		</p>
-
+			<%= link_to " 編集する", edit_customers_customer_path, class: "glyphicon glyphicon-pencil btn btn-success" %></p>
+	
 			<table class="table table-bordered table-condensed" >
 				<tbody>
 					<tr>
@@ -44,5 +51,5 @@
 				</p>
 			</div>
 	</div>
-</div>
+  </div>
 </div>
