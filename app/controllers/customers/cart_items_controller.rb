@@ -1,6 +1,6 @@
 class Customers::CartItemsController < ApplicationController
     # before_action :setup_item, only: [:destroy]
-     before_action :authenticate_customer!
+     
 
 
   def index
