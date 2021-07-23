@@ -9,6 +9,7 @@
    </head>
    <header class="navbar navbar-fixed-top">
      <div class="container">
+        <%= image_tag 'logo.png' %>
        <% if customer_signed_in? %>
          <li>
            ようこそ<%= current_customer.last_name %>さん！
@@ -55,19 +56,23 @@
            <%= link_to "ログイン", new_customer_session_path, class: 'nav-link  badge badge-pill badge-light' %>
          </li>
        <% end %>
-     <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+       <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+       </form>
      </div>
-   </header>
-   <body>
-     <% if flash[:notice] %>
-    <p class="alert alert-success">
-  　   <%= flash[:notice] %>
-    </p>
-    <% end %>
-    <%= yield %>
-   </body>
-    
+     </header>
+     <body>
+       <% if flash[:notice] %>
+          <p class="alert alert-success">
+             <%= flash[:notice] %>
+          </p>
+       <% end %>
+       <%= yield %>
+       <footer class="fixed-bottom">
+          <div class="d-flex align-items-center justify-content-center text-dark" style="height: 50px;">
+             <p class="mb-0" id="nomimasu">&copy; leadies</p>
+          </div>
+       </footer>
+     </body>
 </html>
