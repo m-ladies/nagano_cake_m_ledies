@@ -16,7 +16,7 @@ class Customers::CartItemsController < ApplicationController
   def create
     @cart_item = current_customer.cart_items.new(cart_item_params)
 
-    if !@cart_item.amount.nil?   #個数が空っぽの場合は
+    if !@cart_item.amount.nil?   #個数が空っぽではない場合は保存される
       
        @cart_item.save!
       redirect_to customers_cart_items_path, notice: 'カート内に商品が追加されました'
@@ -40,7 +40,7 @@ class Customers::CartItemsController < ApplicationController
 
   private
   def cart_item_params
-    params.require(:cart_item).permit(:amount, :item_id)
+    params.require(:cart_item).permit(:amount, :item_id)    #permit カラム
   end
 
 
