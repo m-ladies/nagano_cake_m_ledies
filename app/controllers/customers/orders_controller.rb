@@ -1,8 +1,5 @@
 class Customers::OrdersController < ApplicationController
 
-# before_action :to_log, only: [:show]
-# before_action :authenticate_customer!
-
   def new
     @order = Order.new
   end
@@ -39,6 +36,7 @@ class Customers::OrdersController < ApplicationController
     # binding.pry
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
+    @order_status = "入金待ち"
     @order.total_payment = params[:order][:total_payment]
     @order.save
     @cart_items = current_customer.cart_items
@@ -47,9 +45,10 @@ class Customers::OrdersController < ApplicationController
         item_id: cart_item.item.id,
         order_id: @order.id,
         amount: cart_item.amount,
-        price: cart_item.item.price
+        #sub_price: cart_item.item.price
       )
-     end
+    end
+
     @cart_items.destroy_all
     redirect_to thanx_customers_orders_path
   end
@@ -63,16 +62,7 @@ class Customers::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_details = @order.order_details
-    @cart_items = current_customer.cart_items
-    @cart_items.each do |cart_item|
-      OrderDetail.create(
-        item_id: cart_item.item.id,
-        order_id: @order.id,
-        amount: cart_item.amount,
-        price: cart_item.item.price
-      )
-    end
+    @order_details = @order.order_detail
   end
 
   private

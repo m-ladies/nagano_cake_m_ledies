@@ -99,7 +99,6 @@ ActiveRecord::Schema.define(version: 2021_07_21_081449) do
     t.string "postal_code"
     t.integer "order_status", default: 0
     t.integer "customer_id"
-    t.integer "Address_Status"
   end
 
   create_table "users", force: :cascade do |t|

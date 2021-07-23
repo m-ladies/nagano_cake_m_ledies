@@ -1,6 +1,5 @@
 class Customers::AddressesController < ApplicationController
-#   before_action :authenticate_customer!
-
+  
   def index
   	@addresses = current_customer.addresses
   	@address = Address.new
@@ -8,7 +7,7 @@ class Customers::AddressesController < ApplicationController
 
   def create
 	  @address = Address.new(address_params)
-	  @address.customer_id = current_customer.id
+    @address.customer_id = current_customer.id
       if @address.save
 	      redirect_to customers_addresses_path, notice: '新規配送先を登録しました'
       else
