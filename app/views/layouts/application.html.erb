@@ -9,6 +9,7 @@
    </head>
    <header class="navbar navbar-fixed-top">
      <div class="container">
+        <%= image_tag 'logo.png' %>
        <% if customer_signed_in? %>
          <li>
            ようこそ<%= current_customer.last_name %>さん！
@@ -68,5 +69,10 @@
           </p>
        <% end %>
        <%= yield %>
+       <footer class="fixed-bottom">
+          <div class="d-flex align-items-center justify-content-center text-dark" style="height: 50px;">
+             <p class="mb-0" id="nomimasu">&copy; leadies</p>
+          </div>
+       </footer>
      </body>
 </html>
