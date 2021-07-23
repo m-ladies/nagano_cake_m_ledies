@@ -1,7 +1,5 @@
 class Customers::CustomersController < ApplicationController
 
-#   before_action :authenticate_customer!, except: [:contact]
-
   def show
     @customer = current_customer
   end

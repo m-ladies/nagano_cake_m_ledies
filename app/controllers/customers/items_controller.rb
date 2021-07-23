@@ -1,5 +1,5 @@
 class Customers::ItemsController < ApplicationController
-
+  
   
   def top
     @items = Item.all

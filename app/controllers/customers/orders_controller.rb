@@ -1,8 +1,5 @@
 class Customers::OrdersController < ApplicationController
 
-# before_action :to_log, only: [:show]
-# before_action :authenticate_customer!
-
   def new
     @order = Order.new
   end
@@ -37,19 +34,19 @@ class Customers::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    @order.status = "入金待ち"
+    @order_status = "入金待ち"
     @order.save
     @cart_items = current_customer.cart_items
     @cart_items.each do |cart_item|
-      OrderItem.create(
+      OrderDetail.create(
         item_id: cart_item.item.id,
         order_id: @order.id,
         amount: cart_item.amount,
-        sub_price: cart_item.item.price
+        #sub_price: cart_item.item.price
       )
     end
-    CartItem.destroy_all
-    redirect_to complete_public_orders_path
+    @cart_items.destroy_all
+    redirect_to thanx_customers_orders_path
   end
 
   def thanx
@@ -61,12 +58,12 @@ class Customers::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_items = @order.order_items
+    @order_details = @order.order_details
   end
 
   private
 
   def order_params
-    params.require(:order).permit( :address, :postal_code, :name, :payment_method, :total_payment, :order_status, :address_status, :shipping_cost)
+    params.require(:order).permit( :address, :postal_code, :name, :payment_method, :total_payment, :order_status, :shipping_cost)
   end
 end

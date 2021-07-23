@@ -9,12 +9,13 @@
    </head>
    <header class="navbar navbar-fixed-top">
      <div class="container">
+       <%= image_tag 'nagano_cake.jpg' %>
        <% if customer_signed_in? %>
          <li>
            ようこそ<%= current_customer.last_name %>さん！
          </li>
          <li>
-           <%= link_to "マイページ",customers_customer_path(current_customer.id), class: 'nav-link  badge badge-pill badge-light' %>
+           <i class="fas fa-user faa-wrench"></i><%= link_to "マイページ",customers_customer_path(current_customer.id), class: 'nav-link  badge badge-pill badge-light' %>
          </li>
          <li>
            <%= link_to "商品一覧", customers_items_path, class: 'nav-link  badge badge-pill badge-light' %>
@@ -68,6 +69,10 @@
     </p>
     <% end %>
     <%= yield %>
+    <footer class="fixed-bottom">
+      <div class="d-flex align-items-center justify-content-center text-dark" style="height: 50px;">
+        <p class="mb-0" id="nomimasu">&copy; leadies</p>
+      </div>
+    </footer>
    </body>
-    
 </html>
