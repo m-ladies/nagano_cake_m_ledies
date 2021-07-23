@@ -7,61 +7,95 @@
      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
    </head>
-   <header class="navbar navbar-fixed-top">
-     <div class="container">
+   
+   <body>
+     <header class="navbar navbar-fixed-top">
+       <div class="container">
        <% if customer_signed_in? %>
+       <ul class="navbar-nav mr-auto">
+ 
          <li>
            ようこそ<%= current_customer.last_name %>さん！
          </li>
-         <li>
-           <%= link_to "マイページ",customers_customer_path(current_customer.id), class: 'nav-link  badge badge-pill badge-light' %>
          </li>
-         <li>
+       </ul>
+           <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+             <%= link_to "マイページ",customers_customer_path(current_customer.id), class: 'nav-link faa-parent animated-hover' do %>
+             <i class="fas fa-user faa-wrench"></i>
+            <% end %>
+            </li>
+         <li class="nav-item">
            <%= link_to "商品一覧", customers_items_path, class: 'nav-link  badge badge-pill badge-light' %>
+           <i class="fas  fa-birthday-cake faa-wrench"></i>
          </li>
-         <li>
+         
+         <li class="nav-item">
            <%= link_to "カート", customers_cart_items_path, class: 'nav-link  badge badge-pill badge-light' %>
+           <i class="fas fa-shopping-cart faa-wrench"></i>
          </li>
-         <li>
+         
+         <li class="nav-item">
            <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link  badge badge-pill badge-light' %>
+           <i class="fas fa-sign-out-alt faa-wrench"></i>
          </li>
+         </ul>
+         
        <% elsif admin_signed_in? %>
+       
          <li class="nav-item">
            <%= link_to "商品一覧", admin_items_path, class: "nav-link" %>
+           <i class="fas  fa-birthday-cake fa-fw faa-wrench"></i>
          </li>
+         
          <li class="nav-item">
            <%= link_to "会員一覧", admin_customers_path, class: "nav-link" %>
+           <i class="fas fa-users fa-fw faa-wrench"></i>
          </li>
+         
          <li class="nav-item">
            <%= link_to "注文履歴一覧", admin_homes_top_path, class: "nav-link" %>
+           <i class="fas fa-file-alt fa-fw faa-wrench"></i>
          </li>
+         
          <li class="nav-item">
            <%= link_to "ジャンル一覧", admin_genres_path, class: "nav-link" %>
+           <i class="fas fa-list-alt fa-fw faa-wrench"></i>
          </li>
+         
          <li class="nav-item">
            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
+           <i style="height:0;opacity:0">""</i>
+            <i class="fas fa-sign-out-alt fa-fw faa-wrench"></i>
          </li>
+         
        <% else %>
-         <li>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
            <%= link_to "About", items_path, class: 'nav-link  badge badge-pill badge-light' %>
+           <i class="fas fa-info-circle faa-wrench"></i>
          </li>
-         <li>
+         
+         <li class="nav-item">
            <%= link_to "商品一覧", customers_items_path, class: 'nav-link  badge badge-pill badge-light' %>
+           <i class="fas  fa-birthday-cake faa-wrench"></i>
          </li>
-         <li>
+         <li class="nav-item">
            <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link  badge badge-pill badge-light' %>
+            <i class="fas fa-user-plus faa-wrench"></i>
          </li>
-         <li>
+         <li class="nav-item">
            <%= link_to "ログイン", new_customer_session_path, class: 'nav-link  badge badge-pill badge-light' %>
+           <i class="fas fa-sign-in-alt faa-wrench"></i>
          </li>
        <% end %>
-     <form class="d-flex">
+       </ul>
+       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
      </div>
    </header>
-   <body>
      <% if flash[:notice] %>
     <p class="alert alert-success">
   　   <%= flash[:notice] %>
