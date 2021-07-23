@@ -5,6 +5,7 @@ class Customers::OrdersController < ApplicationController
   end
 
   def to_log
+    # binding.pry
     @orders = Order.all
     @shipping_cost = 800
     @order = Order.new(order_params)
@@ -32,9 +33,11 @@ class Customers::OrdersController < ApplicationController
   end
 
   def create
+    # binding.pry
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order_status = "入金待ち"
+    @order.total_payment = params[:order][:total_payment]
     @order.save
     @cart_items = current_customer.cart_items
     @cart_items.each do |cart_item|
@@ -45,6 +48,7 @@ class Customers::OrdersController < ApplicationController
         #sub_price: cart_item.item.price
       )
     end
+
     @cart_items.destroy_all
     redirect_to thanx_customers_orders_path
   end
@@ -58,7 +62,7 @@ class Customers::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_details = @order.order_details
+    @order_details = @order.order_detail
   end
 
   private
