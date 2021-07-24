@@ -16,17 +16,12 @@ Rails.application.routes.draw do
   namespace :admin do
     get "homes/top" => "homes#top"
     resources :items
-    resources :customers do
-      member do
-        get "check"
-        patch "is_deleted"
-      end
-    end
+    resources :customers
     resources :orders,only: [:show, :update]
     resources :genres,only: [:index,:create,:edit,:update]
     resources :order_details,only: [:update]
-  end
 
+  end
 
 
   # customer
@@ -64,4 +59,6 @@ Rails.application.routes.draw do
 
     resources :addresses,only: [:index,:create,:destroy,:edit,:update]
   end
+
 end
+
