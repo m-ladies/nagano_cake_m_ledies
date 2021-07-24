@@ -25,6 +25,23 @@ class Admin::CustomersController < ApplicationController
     end
   end
 
+
+  def check
+    @customer = Customer.find(params[:id])
+    #ユーザーの情報を見つける
+  end
+
+def is_deleted
+    @customer = Customer.find(current_customer.id)
+    #現在ログインしているユーザーを@customerに格納
+    @customer.update(is_deleted: "Invalid")
+    #updateで登録情報をInvalidに変更
+    reset_session
+    #sessionIDのresetを行う
+    redirect_to root_path
+    #指定されたrootへのpath
+end
+
  private
 
   def customer_params

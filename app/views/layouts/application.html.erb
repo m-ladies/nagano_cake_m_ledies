@@ -19,7 +19,7 @@
          </ul>
          <ul class="nav-item">
             <i class="fas fa-user faa-wrench"></i>
-            <%= link_to "マイページ",customers_customer_path(current_customer.id), class: 'nav-link badge badge-pill' %>
+            <%= link_to "マイページ", customers_customer_path(current_customer.id), class: 'nav-link badge badge-pill' %>
          </ul>
          <ul class="nav-item">
             <i class="fas  fa-birthday-cake faa-wrench"></i>
@@ -63,7 +63,7 @@
            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link badge badge-pill" %>
            <i style="height:0;opacity:0">""</i>
          </ul>
-         
+        
        <% else %>
           <ul class="nav-item">
            <i class="fas fa-info-circle faa-wrench"></i>
