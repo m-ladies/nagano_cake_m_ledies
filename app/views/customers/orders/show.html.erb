@@ -75,7 +75,6 @@
 
     	      <tr>
     		    	<td class="table-secondary"><strong>ご請求額</strong></td>
-    		    	<!--ヘルパーに記述した計算式を呼び出す-->
     		    	<td><%= @order.total_payment.to_s(:delimited) %></td>
     	      </tr>
     	    </table>
@@ -109,6 +108,7 @@
                <td><%= od.item.name %></td>
                <td><%= od.item.price.to_s(:delimited) %></td>
                <td><%= od.amount %></td>
+               <!--↓ヘルパーに記述した計算式を呼び出す-->
                <td><%= sub_price(od).to_s(:delimited) %></td>
              </tbody>
             <% end %>

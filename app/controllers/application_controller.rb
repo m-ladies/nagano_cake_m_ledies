@@ -1,10 +1,16 @@
 class ApplicationController < ActionController::Base
 
-   #ログイン後の遷移画面(管理者&顧客)
+
+   before_action :authenticate_customer!,except: [:new, :about, :index, :show]
+   before_action :configure_permitted_parameters, if: :devise_controller?
+
+
+  
+    #ログイン後の遷移画面(管理者&顧客)
   def after_sign_in_path_for(resource)
     case resource
     when Admin
-      admin_homes_top_path
+    admin_homes_top_path
     when Customer
       root_path
     end
@@ -18,20 +24,15 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
-
-
-   before_action :configure_permitted_parameters, if: :devise_controller?
-   #before_action :authenticate_customer!,except: [:new, :about, :index, :show]
-   #before_action :authenticate_admin!,except: [:new, :about, :index]
-
+  
+    # before_action :authenticate_admin!
 
    protected
    # 新規登録の保存機能
-   def configure_permitted_parameters
-       devise_parameter_sanitizer.permit(:sign_up,
-  	   keys: [:first_name, :last_name, :first_name_kana, :last_name_kana,
-              :email, :postal_code, :address, :telephone_number])
-   end
 
-
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up,
+  			 keys: [:first_name, :last_name, :first_name_kana, :last_name_kana,
+                :email, :postal_code, :address, :telephone_number])
+    end
 end

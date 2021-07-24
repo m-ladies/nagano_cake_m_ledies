@@ -2,13 +2,9 @@
   <div class="row mt-5">
     <div class="col-md-2"></div>
     <div class="col-md-3 text-center">
-      <h2 style="background-color: #cd5c5c; color: white;">注文情報入力</h2>
+      <h5 style="background-color: #cd5c5c; color: white;">注文情報入力</h5>
     </div>
   </div>
-  
-    <%# render "layouts/error_messages", resource: @order%>
-  <%# if current_customer.items.present? %>
-
     <%= form_with model: @order, url: to_log_customers_orders_path, method: :post, local:true do |f| %>
 
           <div class="row">
@@ -16,7 +12,7 @@
               <div class="col-md-10">
                 <div class="row mt-2">
                   <div class="col-md-3">
-                    <h2><strong>支払方法</strong></h2>
+                    <h3><strong>支払方法</strong></h3>
                   </div>
                 </div>
 
@@ -35,7 +31,7 @@
                 
                 <div class="row mt-2">
                   <div class="col-md-3">
-                    <h2><strong>お届け先</strong></h2>
+                    <h3><strong>お届け先</strong></h3>
                   </div>
                 </div>
 
