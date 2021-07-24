@@ -1,6 +1,6 @@
 class Customers::CartItemsController < ApplicationController
     # before_action :setup_item, only: [:destroy]
-     
+     before_action :authenticate_customer!
 
 
   def index
@@ -17,7 +17,7 @@ class Customers::CartItemsController < ApplicationController
     @cart_item = current_customer.cart_items.new(cart_item_params)
 
     if !@cart_item.amount.nil?   #個数が空っぽではない場合は保存される
-      
+
        @cart_item.save!
       redirect_to customers_cart_items_path, notice: 'カート内に商品が追加されました'
     else

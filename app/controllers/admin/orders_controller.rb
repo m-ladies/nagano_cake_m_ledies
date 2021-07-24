@@ -7,10 +7,10 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
-    
+
     @order = Order.find(params[:id])
     @order_details = @order.order_details
-    @order.update(order_params) 
+    @order.update(order_params)
     if @order.order_status == "入金確認"
        @order_details.each do |order_detail|
         order_detail.making_status = "製作待ち"
