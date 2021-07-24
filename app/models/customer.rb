@@ -18,16 +18,10 @@ class Customer < ApplicationRecord
   has_many :orders
   has_many :addresses
   
+  # super=確認用のパスが同じかどうか、ログインさせて良い時の条件を書く
   def active_for_authentication?
-    super && (self.is_deleted == false)
+    super && (self.is_deleted == "Available")
   end
-
-  enum is_deleted: {Available: true, Invalid: false}
-    #有効会員はtrue、退会済み会員はfalse
-
-    def deleted_for_authentication?
-        super && (self.is_deleted === "Available")
-    end
-    #is_deletedが有効の場合は有効会員(ログイン可能)
+  # ↑基本的にAvailableかInvalidを使う
 
 end
