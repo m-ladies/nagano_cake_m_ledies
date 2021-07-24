@@ -18,6 +18,7 @@ class Customer < ApplicationRecord
   has_many :orders
   has_many :addresses
   
+
   enum is_deleted: {Available: true, Invalid: false}
     #有効会員はtrue、退会済み会員はfalse
 
