@@ -25,9 +25,10 @@
 
            <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-             <%= link_to "マイページ",customers_customer_path(current_customer.id), class: 'nav-link faa-parent animated-hover'%>
-
+             <%= link_to "マイページ",customers_customer_path(current_customer.id), class: 'nav-link faa-parent animated-hover' %>
              <i class="fas fa-user faa-wrench"></i>
+        
+
             </li>
          <li class="nav-item">
            <%= link_to "商品一覧", customers_items_path, class: 'nav-link  badge badge-pill badge-light' %>
@@ -107,6 +108,7 @@
              <%= flash[:notice] %>
           </p>
        <% end %>
+       <p class="alert1"><%= alert %></p>
        <%= yield %>
 
        <footer class="fixed-bottom">
