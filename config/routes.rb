@@ -59,7 +59,6 @@ Rails.application.routes.draw do
 
     resources :addresses,only: [:index,:create,:destroy,:edit,:update]
 
-    
   end
 end
 

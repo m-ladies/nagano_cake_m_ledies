@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
-
   
-
   before_action :configure_permitted_parameters, if: :devise_controller?
 
     #ログイン後の遷移画面(管理者&顧客)
@@ -22,12 +20,10 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
-
     # before_action :authenticate_admin!
 
    protected
    # 新規登録の保存機能
-
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up,
   			 keys: [:first_name, :last_name, :first_name_kana, :last_name_kana,
