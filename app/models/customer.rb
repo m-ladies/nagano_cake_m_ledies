@@ -25,5 +25,4 @@ class Customer < ApplicationRecord
   end
   # ↑基本的にAvailableかInvalidを使う
 
-
 end
