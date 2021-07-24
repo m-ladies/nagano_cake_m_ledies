@@ -4,12 +4,13 @@
      <title>WorkGithub</title>
      <%= csrf_meta_tags %>
      <%= csp_meta_tag %>
-     <%= stylesheet_link_tag    'application', smedia: 'all', 'data-turbolinks-track': 'reload' %>
+     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
    </head>
 
 
    <body>
+
      <header class="navbar navbar-expand-lg" >
        <div class="container" >
          <%= link_to root_path do %>
@@ -39,39 +40,33 @@
          </ul>
 
        <% elsif admin_signed_in? %>
-
          <ul class="nav-item">
            <i class="fas  fa-birthday-cake fa-fw faa-wrench"></i>
            <%= link_to "商品一覧", admin_items_path, class: "nav-link badge badge-pill" %>
          </ul>
-         
          <ul class="nav-item">
            <i class="fas fa-users fa-fw faa-wrench"></i>
            <%= link_to "会員一覧", admin_customers_path, class: "nav-link badge badge-pill" %>
          </ul>
-         
          <ul class="nav-item">
            <i class="fas fa-file-alt fa-fw faa-wrench"></i>
            <%= link_to "注文履歴一覧", admin_homes_top_path, class: "nav-link badge badge-pill" %>
          </ul>
-         
          <ul class="nav-item">
            <i class="fas fa-list-alt fa-fw faa-wrench"></i>
            <%= link_to "ジャンル一覧", admin_genres_path, class: "nav-link badge badge-pill" %>
          </ul>
-         
          <ul class="nav-item">
            <i class="fas fa-sign-out-alt fa-fw faa-wrench"></i>
            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link badge badge-pill" %>
            <i style="height:0;opacity:0">""</i>
          </ul>
-        
+         
        <% else %>
-          <ul class="nav-item">
+        <ul class="nav-item">
            <i class="fas fa-info-circle faa-wrench"></i>
            <%= link_to "About", items_path, class: 'nav-link  badge badge-pill' %>
          </ul>
-         
          <ul class="nav-item">
            <i class="fas  fa-birthday-cake faa-wrench"></i>
            <%= link_to "商品一覧", customers_items_path, class: 'nav-link  badge badge-pill' %>
@@ -85,13 +80,12 @@
            <%= link_to "ログイン", new_customer_session_path, class: 'nav-link  badge badge-pill' %>
          </ul>
        <% end %>
-       </ul>
+       
        <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+       </form>
      </div>
-
      </header>
 
        <% if flash[:notice] %>
