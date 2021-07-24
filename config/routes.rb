@@ -16,17 +16,12 @@ Rails.application.routes.draw do
   namespace :admin do
     get "homes/top" => "homes#top"
     resources :items
-    resources :customers do
-      member do
-        get "check"
-        patch "is_deleted"
-      end
-    end
+    resources :customers
     resources :orders,only: [:show, :update]
     resources :genres,only: [:index,:create,:edit,:update]
     resources :order_details,only: [:update]
-  end
 
+  end
 
 
   # customer
@@ -43,7 +38,7 @@ Rails.application.routes.draw do
         delete 'all_destroy'
       end
     end
-  end
+
     # get=データを取得する処理、patch=情報を更新する(SQLでいうupdate)
     resources :customers,only: [:show, :edit, :update] do
       collection do
@@ -63,5 +58,8 @@ Rails.application.routes.draw do
     # post=URLが保存可、get=URL保存不可
 
     resources :addresses,only: [:index,:create,:destroy,:edit,:update]
+
     
+  end
 end
+

@@ -3,7 +3,7 @@
   <div class="card-body">
     <h4 class="mt-1 mb-3 bg-gray text-center ">管理者ログイン</h4>
 
-<%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-group">
     <%= f.label :"メールアドレス", :class => "form-label"  %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control"%>
