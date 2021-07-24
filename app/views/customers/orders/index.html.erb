@@ -2,7 +2,7 @@
   <div class="row mt-5">
     <div class="col-md-1"></div>
     <div class="col-md-2 text-center">
-      <h4 style="background-color: #cd5c5c; color: white;">注文履歴一覧</h4>
+      <h5 style="background-color: #cd5c5c; color: white;">注文履歴一覧</h5>
     </div>
   </div>
 
@@ -37,7 +37,7 @@
               <% end %>
               </td>
               <td>
-                <%= order.total_payment %>
+                <%= order.total_payment.to_s(:delimited) %>
               </td>
               <td>
                 <%= order.order_status %>

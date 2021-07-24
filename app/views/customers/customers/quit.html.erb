@@ -1,3 +1,4 @@
+<div class="container">
 <div class="quit">
   <strong>本当に退会しますか？</strong>
 
@@ -7,8 +8,9 @@
       <br>
       退会する場合は,「退会する」をクリックしてください。
     </div>
-
-    <%= link_to "退会しない", customers_customer_path(@customer), class: 'glyphicon glyphicon-home btn btn-primary' %>
+    <br>
+    <%= link_to "退会しない", customers_customer_path(@customer), class: 'glyphicon glyphicon-home btn btn-primary' %>  
     <%= link_to "退会する", out_customers_customers_path, method: :PATCH, data: {confirm: "本当に退会してもよろしいですか？"}, class: "glyphicon glyphicon-tint btn btn-danger" %>
 
+</div>
 </div>
