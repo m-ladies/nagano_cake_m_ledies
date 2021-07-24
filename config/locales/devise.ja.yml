@@ -37,6 +37,7 @@ ja:
     failure:
       already_authenticated: すでにログインしています。
       inactive: アカウントが登録されていません。新規登録をしてください。
+
       invalid: "%{authentication_keys}またはパスワードが違います。"
       last_attempt: もう一回誤るとアカウントがロックされます。
       locked: アカウントはロックされています。

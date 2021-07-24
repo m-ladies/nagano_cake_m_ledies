@@ -1,10 +1,14 @@
-<div class="container">
-  <div class=“row”>
-  <h1>会員一覧</h1>
-    <table class='table table-hover table-inverse'>
-    <thead>
-      <tr class="info">
-      <th>会員id</th>
+<div class="row m-4">
+  <div class="col">
+    <h5 class="d-inline bg-gray pr-3 pl-3 ">会員一覧</h5>
+  </div>
+</div>
+<div class="row m-4">
+  <div class="col-sm-10 m-auto ">
+    <table class="table table-hover">
+      <thead>
+        <tr class="bg-gray">
+      <th>会員ID</th>
       <th>氏名</th>
       <th>メールアドレス</th>
       <th>ステータス</th>
@@ -21,7 +25,7 @@
               <% end %>
             </td>
           <td><%= customer.email %></td>
-          <td><% if customer.is_deleted == true %>
+          <td><% if customer.is_deleted == false %>
                   有効
 					    <% else %>
 					        退会
