@@ -2,7 +2,7 @@
 ja:
   activerecord:
     attributes:
-      customer: #Customerモデル
+      customer: 
         telephone_number: 電話番号
         first_name: 名前
         last_name: 名字
