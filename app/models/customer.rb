@@ -18,16 +18,4 @@ class Customer < ApplicationRecord
   has_many :orders
   has_many :addresses
   
-  def active_for_authentication?
-    super && (self.is_deleted == false)
-  end
-
-  enum is_deleted: {Available: true, Invalid: false}
-    #有効会員はtrue、退会済み会員はfalse
-
-    def deleted_for_authentication?
-        super && (self.is_deleted === "Available")
-    end
-    #is_deletedが有効の場合は有効会員(ログイン可能)
-
 end
