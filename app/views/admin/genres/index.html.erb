@@ -7,7 +7,7 @@
 <% end %>
  <div class="row">
   <div class="col-md-3" style="margin: 30px 0 30px 0;">
-   <h3 style="background-color: #ff66cc; color: white;">ジャンル一覧・追加</h3>
+   <h3 style="background-color: #eeeeee;">ジャンル一覧・追加</h3>
    </div>
    </div>
    <!--ジャンル追加フォーム-->
@@ -21,7 +21,7 @@
      <%= f.text_field :name, :size=>"30×5" %>
      </div>
      <div class="col-md-3">
-     <%= f.submit "新規登録", class: "btn btn-success" %>
+     <%= f.submit "新規登録", :class => "btn btn-outline-secondary btn-block" %>
      </div>
     <% end %>
    </div>
@@ -29,12 +29,12 @@
    <div class="row">
    <div class="col-lg-4">
     <table class="table border-dark">
-          <div class="text-center" style="padding-top: 20px; height: 55px; background-color: #ffbbff;">ジャンル</div>
+          <div class="text-center" style="padding-top: 20px; height: 55px; background-color: #eeeeee;">ジャンル</div>
      <tbody>
       <% @genres.each do |genre| %>
        <tr>
         <td class="genre_name"><%= link_to genre.name %></td>
-        <td><%= link_to "編集する", edit_admin_genre_path(genre), class: "btn btn-success" %></td>
+        <td><%= link_to "編集する", edit_admin_genre_path(genre), :class => "btn btn-outline-secondary btn-block" %></td>
        </tr>
       <% end %>
      </tbody>
