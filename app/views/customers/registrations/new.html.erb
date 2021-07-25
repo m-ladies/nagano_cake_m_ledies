@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-2 text-center" style="margin: 30px 0 35px 0;">
-      <h5 style="background-color: #cd5c5c; color: white;">新規会員登録</h5>
+      <h5 style="background-color: #eeeeee;">新規会員登録</h5>
     </div>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -54,15 +54,17 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-sm-4 form-control-static" %>
       </div>
 
-
+    <div class="row">
+      <div class=""
       <div class="actions">
-        <%= f.submit "新規登録",class: 'btn btn-success btn-lg col-xs-7' %>
+        <%= f.submit "新規登録", :class => "btn btn-outline-secondary btn-block" %>
       </div>
+    </div>  
     <% end %>
 
       <div class="row">
         <div class="col- text-center" style="margin: 30px 0 35px 0;">
-          <h5 style="background-color: #cd5c5c; color: white;">既に登録済みの方</h5>
+          <h5 style="background-color: #eeeeee;">既に登録済みの方</h5>
         </div>
       </div>
        <p class="col-md-4 text-center"><%= link_to 'こちら', new_customer_session_path %> からログインしてください</p>
