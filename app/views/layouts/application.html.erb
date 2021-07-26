@@ -6,18 +6,17 @@
      <%= csp_meta_tag %>
      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
-
-<body>
-  <header class="navbar navbar-expand-md" >
-    <div class="container" >
-      <%= link_to root_path do %>
-        <%= image_tag 'logo.png' %>
-      <% end %>
-      
-      <% if customer_signed_in? %>
+   </head>
+  
+   <body>
+     <header class="navbar navbar-expand-lg" >
+       <div class="container" >
+         <%= link_to root_path do %>
+            <%= image_tag 'logo.png' %>
+        <% end %>
+        <% if customer_signed_in? %>
         <ul class="nav-item">
-          <span>ようこそ <%= current_customer.last_name %>さん！</span>
+          <span class="nav-item-content">ようこそ <%= current_customer.last_name %>さん！</span>
         </ul>
         <ul class="nav-item">
           <i class="fas fa-user faa-wrench"></i>
@@ -27,12 +26,12 @@
           <i class="fas  fa-birthday-cake faa-wrench"></i>
           <%= link_to "商品一覧", customers_items_path, class: 'nav-link badge badge-pill ' %>
         </ul>
-         
+
         <ul class="nav-item">
           <i class="fas fa-shopping-cart faa-wrench"></i>
           <%= link_to "カート", customers_cart_items_path, class: 'nav-link badge badge-pill' %>
         </ul>
-         
+
         <ul class="nav-item">
           <i class="fas fa-sign-out-alt faa-wrench"></i>
           <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link badge badge-pill' %>
@@ -63,7 +62,7 @@
            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link badge badge-pill" %>
            <i style="height:0;opacity:0">""</i>
          </ul>
-         
+
        <% else %>
         <ul class="nav-item">
           <i class="fas fa-info-circle faa-wrench"></i>
@@ -85,22 +84,19 @@
           <%= render "customers/items/search" %>
         </ul>
        <% end %>
-     </div>
-  </header>
-
-       <% if flash[:notice] %>
-          <p class="alert alert-success">
-             <%= flash[:notice] %>
-          </p>
-       <% end %>
-       <p class="alert1"><%= alert %></p>
-       <%= yield %>
-
-  <footer class="fixed-bottom">
-    <div class="d-flex align-items-center justify-content-center text-dark" style="height: 50px;">
-    <p class="nav-item" id="">&copy; 2021_06_leadies</p>
-    </div>
-  </footer>
-</body>
-
+      </div>
+    </header>
+    <% if flash[:notice] %>
+      <p class="alert alert-success">
+        <%= flash[:notice] %>
+      </p>
+    <% end %>
+    <p class="alert1"><%= alert %></p>
+    <%= yield %>
+    <footer class="fixed-bottom">
+      <div class="d-flex align-items-center justify-content-center text-dark" style="height: 50px;">
+        <p class="nav-item" id="">&copy; 2021_06_leadies</p>
+      </div>
+    </footer>
+   </body>
 </html>

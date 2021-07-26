@@ -34,8 +34,8 @@ Rails.application.routes.draw do
   namespace :customers do
     get '/search' => 'search#search'
 
-    resources :items, only: [:index, :show] 
-      
+    resources :items, only: [:index, :show]
+
     resources :cart_items, only: [:index, :update, :create, :destroy] do
       collection do
         delete 'all_destroy'
@@ -59,7 +59,7 @@ Rails.application.routes.draw do
       end
     end
     # post=URLが保存可、get=URL保存不可
-    
+
     resources :addresses,only: [:index,:create,:destroy,:edit,:update]
   end
 end
