@@ -46,9 +46,9 @@
           <%= f.label :会員ステータス, class: "ml-3" %>
           <div class="form-check ml-4">
             <%= f.radio_button :is_deleted, :true %>
-            <%= f.label :is_deleted, "有効会員" %>
-            <%= f.radio_button :is_deleted, :false %>
             <%= f.label :is_deleted, "退会済み" %>
+            <%= f.radio_button :is_deleted, :false %>
+            <%= f.label :is_deleted, "有効会員" %>
           </div>
         </div>
         <div class="row">
