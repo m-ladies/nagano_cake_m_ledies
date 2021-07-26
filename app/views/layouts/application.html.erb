@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
-   <head>
+<head>
      <title>WorkGithub</title>
      <%= csrf_meta_tags %>
      <%= csp_meta_tag %>
      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-   </head>
+</head>
 
-   <body>
-     <header class="navbar navbar-expand-lg" >
-       <div class="container" >
-         <%= link_to root_path do %>
-            <%= image_tag 'logo.png' %>
-        <% end %>
-        <% if customer_signed_in? %>
+<body>
+  <header class="navbar navbar-expand-md" >
+    <div class="container" >
+      <%= link_to root_path do %>
+        <%= image_tag 'logo.png' %>
+      <% end %>
+      
+      <% if customer_signed_in? %>
         <ul class="nav-item">
           <span>ようこそ <%= current_customer.last_name %>さん！</span>
         </ul>
@@ -85,7 +86,7 @@
         </ul>
        <% end %>
      </div>
-     </header>
+  </header>
 
        <% if flash[:notice] %>
           <p class="alert alert-success">
@@ -95,11 +96,11 @@
        <p class="alert1"><%= alert %></p>
        <%= yield %>
 
-       <footer class="fixed-bottom">
-          <div class="d-flex align-items-center justify-content-center text-dark" style="height: 50px;">
-             <p class="nav-item" id="">&copy; 2021_06_leadies</p>
-          </div>
-       </footer>
-     </body>
+  <footer class="fixed-bottom">
+    <div class="d-flex align-items-center justify-content-center text-dark" style="height: 50px;">
+    <p class="nav-item" id="">&copy; 2021_06_leadies</p>
+    </div>
+  </footer>
+</body>
 
 </html>
