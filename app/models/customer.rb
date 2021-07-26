@@ -19,7 +19,7 @@ class Customer < ApplicationRecord
   has_many :addresses
 
 
-  
+
   # super=確認用のパスが同じかどうか、ログインさせて良い時の条件を書く
   def active_for_authentication?
     super && (self.is_deleted == false)
