@@ -58,7 +58,5 @@ Rails.application.routes.draw do
     # post=URLが保存可、get=URL保存不可
 
     resources :addresses,only: [:index,:create,:destroy,:edit,:update]
-
   end
 end
-
