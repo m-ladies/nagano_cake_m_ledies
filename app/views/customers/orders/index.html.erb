@@ -2,7 +2,7 @@
   <div class="row mt-5">
     <div class="col-md-1"></div>
     <div class="col-md-2 text-center">
-      <h5 style="background-color: #cd5c5c; color: white;">注文履歴一覧</h5>
+      <h5 style="background-color: #eeeeee;">注文履歴一覧</h5>
     </div>
   </div>
 
@@ -44,7 +44,7 @@
               </td>
              
               <td>
-                <%= link_to "表示する", customers_order_path(order.id), class:"btn btn-primary" %>
+                <%= link_to "表示する", customers_order_path(order.id), class:"btn btn-outline-secondary btn-block" %>
               </td>
             </tr>
           <% end %>
