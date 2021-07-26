@@ -24,12 +24,18 @@
   table-layout: auto;
 }
 
+.alert{
+  text-align: center;
+}
+
 .error_messages{
   color: red;
+  text-align: center;
 }
 
 .alert1{
-    color: red;
+  color: red;
+  text-align: center;
 }
 
 header {
@@ -47,3 +53,4 @@ footer {
 .nav-link{
   color: #330000;
 }
+

@@ -7,7 +7,7 @@
    <% end %>
    <div class="row">
      <div class="col-md-2 text-center" style="margin: 30px 0 30px 200px;">
-       <h4 style="background-color: #ff66cc; color: white;" >ジャンル編集</h4>
+       <h4 style="background-color: #eeeeee;" >ジャンル編集</h4>
      </div>
    </div>
    <!--urlにはしたいアクションのpathを書く-->
@@ -16,7 +16,9 @@
        <div class="col-md-1"></div>
        <div class="col-md-1">ジャンル</div>
        <div class="col-2"><%= f.text_field :name  %></div>
-       <%= f.submit "変更を保存", class: "btn btn-success" %>
+       <div class="actions">
+           <%= f.submit "変更を保存", :class => "btn btn-outline-secondary btn-block" %>
+       </div>
      </div>
    <% end %>
 </div>

@@ -19,12 +19,11 @@ class Customer < ApplicationRecord
   has_many :addresses
 
 
-
-  # super=確認用のパスが同じかどうか、ログインさせて良い時の条件を書く
+  # super=確認用のパスが同じかどうか、ログインさせて良い時の条件を書く。今回はあまり必要ない
   def active_for_authentication?
     super && (self.is_deleted == false)
   end
-
-
-
+  # self=ログインしようとしている会員
+  # active_for_authentication?がtrueを返せばログインできる。falseを返せばログインできない。
+  # self.is_deleted == false　これが trueになるかfalseになるか。。。
 end
