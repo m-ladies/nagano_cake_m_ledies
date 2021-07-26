@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3 text-center" style="margin: 10px 0 10px 0;">
-     <h3 style="background-color: #eeeeee;">会員情報詳細</h3>
+     <h3 style="background-color: #eeeeee;">会員情報詳細編集</h3>
     </div>
   </div>
   <%= form_with model: @customer, url:admin_customer_path(@customer), local: true do |f| %>
@@ -46,9 +46,9 @@
           <%= f.label :会員ステータス, class: "ml-3" %>
           <div class="form-check ml-4">
             <%= f.radio_button :is_deleted, :true %>
-            <%= f.label :is_deleted, "有効会員" %>
-            <%= f.radio_button :is_deleted, :false %>
             <%= f.label :is_deleted, "退会済み" %>
+            <%= f.radio_button :is_deleted, :false %>
+            <%= f.label :is_deleted, "有効会員" %>
           </div>
         </div>
         <div class="row">
