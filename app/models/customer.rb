@@ -22,7 +22,7 @@ class Customer < ApplicationRecord
   
   # super=確認用のパスが同じかどうか、ログインさせて良い時の条件を書く
   def active_for_authentication?
-    super && (self.is_deleted == "Available")
+    super && (self.is_deleted == false)
   end
   # ↑基本的にAvailableかInvalidを使う
 
