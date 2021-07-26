@@ -1,16 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-2 text-center" style="margin: 30px;">
-      <h4 style="background-color: #cd5c5c; color: white;">ログイン</h4>
+      <h4 style="background-color: #eeeeee;">ログイン</h4>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-4 text-center" style="margin: 30px 0 0 50px;">
-      <h5 style="background-color: #cd5c5c; color: white;">会員の方はこちらからログイン</h5><br>
+      <h5 style="background-color: #eeeeee;">会員の方はこちらからログイン</h5><br>
     </div>
   </div>
 
-     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="row" style="font-size: 18px; margin-top: 10px;">
         <div class="col-md-2 text-left">
         </div>
@@ -36,16 +36,16 @@
      <div class="row" style="mmargin-top: 10px;">
        <div class="col-md-4 text-left">
         </div>
-       <div class="col-sm-1 text-left">
+       <div class="col-sm-2 text-left">
          <div class="actions">
-           <%= f.submit "ログイン", class: "btn btn-primary" %>
+           <%= f.submit "ログイン", :class => "btn btn-outline-secondary btn-block" %>
         </div>
        </div>
      </div>
      <% end %>
      <div class="row">
       <div class="col-sm-4 text-center" style="margin: 30px 0 15px 50px;">
-       <h5 style="background-color: #cd5c5c; color: white;">会員登録がお済みでない方</h5>
+       <h5 style="background-color: #eeeeee;">会員登録がお済みでない方</h5>
       </div>
      </div>
       <p class="col-md-6 text-right"><%= link_to 'こちら', new_customer_registration_path %> から新規登録を行ってください</p>
