@@ -70,15 +70,15 @@
               <table class="table table-borderless">
                   <tr class="border-bottom border-dark">
                     <td>商品合計</td>
-                    <td><%= @order.total_payment.to_s(:delimited) %></td>
+                    <td><%= @order.total_payment.to_s(:delimited) %>円</td>
                   </tr>
                   <tr class="border-bottom border-dark">
                     <td>送料</td>
-                    <td><%= @order.shipping_cost %></td>
+                    <td><%= @order.shipping_cost %>円</td>
                   </tr>
                   <tr class="border-bottom border-dark">
                     <td>請求合計金額</td>
-                    <td><%= @order.total_payment %></td>
+                    <td><%= @order.total_payment %>円</td>
                   </tr>
               </table>
         </div>
