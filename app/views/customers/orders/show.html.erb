@@ -3,7 +3,7 @@
     <div class="col-md-1 text-left">
     </div>
     <div class="col-md-2 text-center" style="margin: 30px 0 35px 0;">
-      <h5 style="background-color: #cd5c5c; color: white;">注文履歴詳細</h5>
+      <h5 style="background-color: #eeeeee;">注文履歴詳細</h5>
     </div>
   </div>
   
@@ -15,11 +15,11 @@
 		    </div>
 		  </div>
 
-		  <div class="row">
-    	  <div class="col-md-12">
-    	    <table class="table table-bordered">
-    	    	 <tr>
-    		    	<td class="table-secondary">注文日</td>
+		<div class="row">
+    	 <div class="col-md-12">
+    	   <table class="table table-bordered">
+    	    	<tr>
+    		      <td class="table-secondary">注文日</td>
     		    	<td>
     		    		<%= @order.created_at.strftime('%Y/%m/%d') %>
     		    	</td>
@@ -64,7 +64,7 @@
     		    	  <!--ヘルパーに記述した計算式を呼び出す-->
     		    		  <%= total_price(@order_details).to_s(:delimited) %>
     		    	</td>
-    	      </tr>
+    	       </tr>
     	      
     	      <tr>
     		    	<td class="table-secondary">配送料</td>
@@ -104,13 +104,13 @@
               </tr>
             </thead>
             <% @order_details.each do |od| %>
-             <tbody>
+            <tbody>
                <td><%= od.item.name %></td>
                <td><%= od.item.price.to_s(:delimited) %></td>
                <td><%= od.amount %></td>
                <!--↓ヘルパーに記述した計算式を呼び出す-->
                <td><%= sub_price(od).to_s(:delimited) %></td>
-             </tbody>
+            </tbody>
             <% end %>
           </table>
         </div>
@@ -118,3 +118,4 @@
     </div>
     <div class="col-md-3"></div>
   </div>
+</div>

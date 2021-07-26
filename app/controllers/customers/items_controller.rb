@@ -9,13 +9,19 @@ class Customers::ItemsController < ApplicationController
   end
   
   def index
-     @items = Item.all.page(params[:page]).reverse_order.per(8)
+    @items = Item.all.page(params[:page]).reverse_order.per(8)
   end 
   
   def show
     @item = Item.find(params[:id])
     @cart_item = CartItem.new
   end 
+  
+  def search
+    @genre = Genre.find_by(id: params[:genre_id])
+    @items = Item.all.page(params[:page]).per(8)
+    @items_count = Item.all
+  end
   
   private
   
