@@ -2,11 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .card {
-  width: 350px;
+  width: 300px;
   background: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 5px #ccc;
+  list-style: none;
 }
+
+.card:hover {
+  box-shadow: 0 5px 10px black;
+　transform: translate(0, -5px);
+}
+
 .card-img {
   border-radius: 5px 5px 0 0;
   max-width: 100%;
@@ -17,25 +24,31 @@
 }
 .card-title {
   font-size: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-align: center;
   color: #333;
 }
 .card-text {
   color: #777;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.0;
 }
-.card-link {
+
+.main{
+  margin: 10px 0 30px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main-item-list{
+  width: auto;
+  height: auto;
   text-align: center;
-  border-top: 1px solid #eee;
-  padding: 20px;
+  padding: 0;
+  margin: 0 auto;
 }
-.card-link a {
-  text-decoration: none;
-  color: #0bd;
-  margin: 0 10px;
-}
-.card-link a:hover {
-  color: #0090aa;
+
+.item{
+  display: inline-block;
+  margin: 10px;
 }

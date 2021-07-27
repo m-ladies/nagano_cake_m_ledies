@@ -19,22 +19,18 @@
           <span class="nav-item-content">ようこそ <%= current_customer.last_name %>さん！</span>
         </ul>
         <ul class="nav-item">
-          <i class="fas fa-user faa-wrench"></i>
-          <%= link_to "マイページ", customers_customer_path(current_customer.id), class: 'nav-link badge badge-pill' %>
+          <%= link_to "　マイページ", customers_customer_path(current_customer.id), class: 'fas fa-user faa-wrench nav-link badge badge-pill' %>
         </ul>
         <ul class="nav-item">
-          <i class="fas  fa-birthday-cake faa-wrench"></i>
-          <%= link_to "商品一覧", customers_items_path, class: 'nav-link badge badge-pill ' %>
+          <%= link_to "　商品一覧", customers_items_path, class: 'fas  fa-birthday-cake faa-wrench nav-link badge badge-pill ' %>
         </ul>
 
         <ul class="nav-item">
-          <i class="fas fa-shopping-cart faa-wrench"></i>
-          <%= link_to "カート", customers_cart_items_path, class: 'nav-link badge badge-pill' %>
+          <%= link_to "　カート", customers_cart_items_path, class: 'fas fa-shopping-cart faa-wrench nav-link badge badge-pill' %>
         </ul>
 
         <ul class="nav-item">
-          <i class="fas fa-sign-out-alt faa-wrench"></i>
-          <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link badge badge-pill' %>
+          <%= link_to "　ログアウト", destroy_customer_session_path, method: :delete, class: 'fas fa-sign-out-alt faa-wrench nav-link badge badge-pill' %>
         </ul>
         <ul>
           <%= render "customers/items/search" %>
@@ -42,43 +38,34 @@
 
        <% elsif admin_signed_in? %>
          <ul class="nav-item">
-           <i class="fas  fa-birthday-cake fa-fw faa-wrench"></i>
-           <%= link_to "商品一覧", admin_items_path, class: "nav-link badge badge-pill" %>
+           <%= link_to "　商品一覧", admin_items_path, class: "fas fa-birthday-cake fa-fw faa-wrench nav-link badge badge-pill" %>
          </ul>
          <ul class="nav-item">
-           <i class="fas fa-users fa-fw faa-wrench"></i>
-           <%= link_to "会員一覧", admin_customers_path, class: "nav-link badge badge-pill" %>
+           <%= link_to "　会員一覧", admin_customers_path, class: "fas fa-users fa-fw faa-wrench nav-link badge badge-pill" %>
          </ul>
          <ul class="nav-item">
-           <i class="fas fa-file-alt fa-fw faa-wrench"></i>
-           <%= link_to "注文履歴一覧", admin_homes_top_path, class: "nav-link badge badge-pill" %>
+           <%= link_to "　注文履歴一覧", admin_homes_top_path, class: "fas fa-file-alt fa-fw faa-wrench nav-link badge badge-pill" %>
          </ul>
          <ul class="nav-item">
-           <i class="fas fa-list-alt fa-fw faa-wrench"></i>
-           <%= link_to "ジャンル一覧", admin_genres_path, class: "nav-link badge badge-pill" %>
+           <%= link_to "　ジャンル一覧", admin_genres_path, class: "fas fa-list-alt fa-fw faa-wrench nav-link badge badge-pill" %>
          </ul>
          <ul class="nav-item">
-           <i class="fas fa-sign-out-alt fa-fw faa-wrench"></i>
-           <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link badge badge-pill" %>
-           <i style="height:0;opacity:0">""</i>
+           <%= link_to "　ログアウト", destroy_admin_session_path, method: :delete, class: "fas fa-sign-out-alt fa-fw faa-wrench nav-link badge badge-pill" %>
          </ul>
+         <ul></ul>
 
        <% else %>
         <ul class="nav-item">
-          <i class="fas fa-info-circle faa-wrench"></i>
-          <%= link_to "About", items_path, class: 'nav-link  badge badge-pill' %>
+          <%= link_to "　About", items_path, class: 'fas fa-info-circle faa-wrench nav-link  badge badge-pill' %>
         </ul>
         <ul class="nav-item">
-          <i class="fas  fa-birthday-cake faa-wrench"></i>
-           <%= link_to "商品一覧", customers_items_path, class: 'nav-link  badge badge-pill' %>
+           <%= link_to "　商品一覧", customers_items_path, class: 'fas  fa-birthday-cake faa-wrench nav-link  badge badge-pill' %>
         </ul>
         <ul class="nav-item">
-          <i class="fas fa-user-plus faa-wrench"></i>
-          <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link  badge badge-pill' %>
+          <%= link_to "　新規登録", new_customer_registration_path, class: 'fas fa-user-plus faa-wrench nav-link  badge badge-pill' %>
         </ul>
         <ul class="nav-item">
-          <i class="fas fa-sign-in-alt faa-wrench"></i>
-          <%= link_to "ログイン", new_customer_session_path, class: 'nav-link  badge badge-pill' %>
+          <%= link_to "　ログイン", new_customer_session_path, class: 'fas fa-sign-in-alt faa-wrench nav-link  badge badge-pill' %>
         </ul>
         <ul>
           <%= render "customers/items/search" %>
