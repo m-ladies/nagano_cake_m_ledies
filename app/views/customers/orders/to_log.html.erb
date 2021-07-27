@@ -1,0 +1,122 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2 text-center" style="margin: 30px 0 35px 0;">
+      <h5 style="background-color: #eeeeee;">注文情報確認</h5>
+    </div>
+  </div>
+<% if current_customer.cart_items.present? %>
+  <%= form_with model: @order, url: customers_orders_path, local:true do |f| %>
+  <div class="row">
+    <div class="col-md-8 text-center" style="margin: 30px 0 35px 0;">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="header1" style="background-color: #f5f5f5"></th>
+            <th class="header2" style="background-color: #f5f5f5">商品名</th>
+            <th class="header3" style="background-color: #f5f5f5">単価（税込）</th>
+            <th class="header4" style="background-color: #f5f5f5">数量</th>
+            <th class="header5" style="background-color: #f5f5f5">小計</th>
+          </tr>
+        </thead>
+
+        <% @sum = 0 %>
+        <% @cart_items.each do |cart_item| %>
+        <tbody>
+          <td>
+            <div style="margin-top: 18px;">
+              <%= attachment_image_tag cart_item.item, :image, :fill, 80, 60, format: 'jpeg',size: "80x60" %>
+            </div>
+          </td>
+          <td>
+            <div style="margin-top: 18px;">
+              <%= cart_item.item.name %>
+            </div>
+          </td>
+          <td>
+            <div style="margin-top: 18px;">
+              <%= cart_item.item.price.to_s(:delimited) %>
+            </div>
+          </td>
+          <td>
+            <div style="margin-top: 18px;">
+             <%= cart_item.amount %>
+            </div>
+          </td>
+          <td>
+            <div style="margin-top: 18px;">
+              <!--ordersヘルパーに記述した計算式を呼び出す-->
+              <%= sub_price(cart_item).to_s(:delimited) %>
+            </div>
+          </td>
+        </tbody>
+        <% @sum += (cart_item.amount * cart_item.item.price) %>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-md-4 text-center" style="margin: 30px 0 35px 0;">
+      <div class="ml-auto">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th class="table-secondary">送料</th>
+              <th>
+                <%= @shipping_cost %>
+                <%= f.hidden_field :shipping, value: @shipping_cost %>
+                </th>
+            </tr>
+            <tr>
+              <th class="table-secondary">商品合計</th>
+               <!--ordersヘルパーに記述した計算式を呼び出す-->
+              <th><%= total_price(@cart_items).to_s(:delimited) %></th>
+            </tr>
+            <tr>
+              <th class="table-secondary">請求金額</th>
+              <th>
+                <% @total = @sum + @shipping_cost %>
+                <%= @total.to_s(:delimited) %>
+                <%= f.hidden_field :total_payment, value: @total %>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="row" style="margin: 30px 0 35px 0;">
+      <div class="col-md-4 text-left">
+        <p>支払い方法</p>
+      </div>
+      <div class="col-md-8 text-left">
+        <%= @order.payment_method %>
+        <%= f.hidden_field :payment_method, value: @order.payment_method %>
+      </div>
+    </div>
+    <div class="row" style="margin: 30px 0 35px 0;">
+      <div class="col-md-4 text-left">
+        <p>お届け先</p>
+      </div>
+      <div class="col-md-8 text-left">
+        <%= @order.postal_code %></br>
+        <%= f.hidden_field :postal_code, value: @order.postal_code %>
+        <%= @order.address %></br>
+        <%= f.hidden_field :address, value: @order.address %>
+        <%= @order.name %>
+        <%= f.hidden_field :name, value: @order.name %>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-12 text-center">
+        <%= f.submit "注文を確定する", class: "btn btn-sm btn-success" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+<% else %>
+        <!-- if カートアイテムがない時 -->
+        <p>お客様のショッピングカートに商品はありませんので注文確定ができません。</p>
+        <p><%= link_to "商品一覧", customers_cart_items_path %>から商品をお探し下さい。</p>
+    <% end %>
+  </div>
+</div>
+

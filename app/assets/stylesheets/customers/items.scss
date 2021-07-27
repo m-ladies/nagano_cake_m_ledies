@@ -1,3 +1,54 @@
 // Place all the styles related to the customers/items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.card {
+  width: 300px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px #ccc;
+  list-style: none;
+}
+
+.card:hover {
+  box-shadow: 0 5px 10px black;
+　transform: translate(0, -5px);
+}
+
+.card-img {
+  border-radius: 5px 5px 0 0;
+  max-width: 100%;
+  height: auto;
+}
+.card-content {
+  padding: 20px;
+}
+.card-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #333;
+}
+.card-text {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.0;
+}
+
+.main{
+  margin: 10px 0 30px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main-item-list{
+  width: auto;
+  height: auto;
+  text-align: center;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.item{
+  display: inline-block;
+  margin: 10px;
+}

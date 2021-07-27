@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-1"></div>
+    <div class="col-md-2 text-center">
+      <h5 style="background-color: #eeeeee;">注文履歴一覧</h5>
+    </div>
+  </div>
+
+	<div class="row mt-4">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr class="table-secondary">
+            <th>注文日</th>
+            <th>配送先</th>
+            <th>注文商品</th>
+            <th>支払金額</th>
+            <th>ステータス</th>
+            <th>注文詳細</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% if @orders.present? %>
+          <% @orders.each do |order| %>
+            <tr>
+              <td>
+                <%= order.created_at.strftime('%Y/%m/%d') %>
+              </td>
+              <td>
+                〒<%= order.postal_code %><br>
+                <%= order.address %><br>
+                <%= order.name %>
+              </td>
+              <td>
+              <% order.order_details.each do |order_detail| %>
+                  <a><%= order_detail.item.name %></a><br>
+              <% end %>
+              </td>
+              <td>
+                <%= order.total_payment.to_s(:delimited) %>
+              </td>
+              <td>
+                <%= order.order_status %>
+              </td>
+             
+              <td>
+                <%= link_to "表示する", customers_order_path(order.id), class:"btn btn-outline-secondary btn-block" %>
+              </td>
+            </tr>
+          <% end %>
+          <% else %>
+        <p>注文履歴がありません。</p>
+        <% end %>
+  			</tbody>
+  		</table>
+	  </div>
+	</div>
+</div>
+      
+    

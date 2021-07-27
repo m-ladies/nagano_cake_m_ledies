@@ -13,3 +13,52 @@
  *= require_tree .
  *= require_self
  */
+
+
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+
+.table {
+  table-layout: auto;
+  text-align: center;
+}
+
+.error_messages{
+  color: red;
+  text-align: center;
+}
+
+.alert{
+  text-align: center;
+}
+
+.alert1{
+  color: red;
+  text-align: center;
+}
+
+header {
+  background: linear-gradient(#FFFFAA, #FFFFDD);
+}
+
+footer {
+  background: linear-gradient(#FFFFDD, #FFFFAA);
+  
+}
+
+.nav-item{
+  color: #330000;
+  text-align: center;
+}
+
+.nav-link{
+  color: #330000;
+}
+
+
+.nav-item-content {
+  white-space: nowrap;
+}
+

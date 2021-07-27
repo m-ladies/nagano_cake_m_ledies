@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-1"></div>
+    <div class="col-md-2 text-center">
+      <h4 style="background-color: #cd5c5c; color: white;"></h4>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+	<div class="col-md-6">
+		<h2 class="head-line text-center title_h2">マイページ</h2>
+		<p><strong class="information-link"><i class="far fa-user"></i>登録情報</strong>&emsp;
+			<%= link_to " 編集する", edit_customers_customer_path, class: "glyphicon glyphicon-pencil btn btn-success" %></p>
+
+			<table class="table table-bordered table-condensed" >
+				<tbody>
+					<tr>
+						<td class="info col-xs-2">氏名</td>
+						<td class="text-left"><%= @customer.last_name %>  <%= @customer.first_name %></td>
+					</tr>
+					<tr>
+						<td class="info">カナ</td>
+						<td class="text-left"><%=  @customer.last_name_kana %>  <%=  @customer.first_name_kana %></td>
+					</tr>
+					<tr>
+						<td class="info">郵便番号</td>
+						<td class="text-left"><%= @customer.postal_code %></td>
+					</tr>
+					<tr>
+						<td class="info">住所</td>
+						<td class="text-left"><%= @customer.address %></td>
+					</tr>
+					<tr>
+						<td class="info">電話番号</td>
+						<td class="text-left"><%= @customer.telephone_number %></td>
+					</tr>
+					<tr>
+						<td class="info">メールアドレス</td>
+						<td class="text-left"><%= @customer.email %></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="mypage-bottoms">
+				<P><strong class="shipping-link">　配送先　</strong>
+
+					<%= link_to " 一覧を見る", customers_addresses_path, data: {"turbolinks" => false}, class: "glyphicon glyphicon-folder-open btn btn-info" %>
+				</p>
+				<p><strong class="order-link">注文履歴</strong>&emsp;
+					<%= link_to " 一覧を見る", customers_orders_path, class: "glyphicon glyphicon-folder-open btn btn-info" %>
+				</p>
+			</div>
+	</div>
+	<div class= "col-md-4" style="margin: 100px 50px 30px 0;">
+		<%= image_tag 'cookies.jpeg' %>
+	</div>
+  </div>
+</div>

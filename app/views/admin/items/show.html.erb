@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="col-md-2 text-center" style="margin: 15px 0 15px 0;">
+    <h5 style="background-color: #eeeeee;">商品詳細</h5>
+  </div>
+  <div class="row">
+    <div class="col-md-5  text-center" style="margin: 30px 0 35px 0;">
+      <div class="post-body">
+        <%= attachment_image_tag @item, :image, size: "300x200" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+    <div class="row" style="margin: 30px 0 35px 0;">
+      <div class="col-md-4 text-left">
+        <p>商品名</p>
+      </div>
+      <div class="col-md-8 text-left">
+        <%= @item.name %>
+      </div>
+    </div>
+    <div class="row" style="margin: 30px 0 35px 0;">
+      <div class="col-md-4 text-left">
+        <p>商品説明</p>
+      </div>
+      <div class="col-md-8 text-left">
+        <%= @item.introduction %>
+      </div>
+    </div>
+    <div class="row" style="margin: 30px 0 35px 0;">
+      <div class="col-md-4 text-left">
+        <p>ジャンル</p>
+      </div>
+      <div class="col-md-8 text-left">
+        <%= @item.genre.name %>
+      </div>
+    </div>
+    <div class="row" style="margin: 30px 0 35px 0;">
+      <div class="col-md-4 text-left">
+        <p>税込価格<br>(税抜価格)</p>
+      </div>
+      <div class="col-md-8 text-left">
+        <%= @item.price.to_s(:delimited) %>円
+        <br>
+        (<%= @item.add_ex_price.to_s(:delimited) %>)
+
+        <!--price=税抜き価格とした場合-->
+        <!--<%#= @item.add_tax_price.to_s(:dalimited) %>-->
+        <!--(<%#= @item.price %>)円-->
+      </div>
+    </div>
+    <div class="row" style="margin: 30px 0 35px 0;">
+      <div class="col-md-4 text-leftr">
+        <p>販売ステータス</p>
+      </div>
+      <div class="col-md-8 text-left">
+        <% if @item.is_active %>
+            販売中
+         <% else %>
+            販売停止中
+         <% end %>
+      </div>
+    </div>
+    <div class="row" style="font-size: 13px; margin-top: 10px;">
+      <div class="col-md-3 text-center">
+      </div>
+      <div class="col-md-4 text-center">
+        <div class="actions">
+          <%= link_to "編集する", edit_admin_item_path(@item), :class => "btn btn-outline-secondary btn-block" %>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

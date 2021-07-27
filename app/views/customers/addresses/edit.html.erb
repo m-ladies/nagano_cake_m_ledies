@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-1 text-left">
+    </div>
+    <div class="col-md-2 text-center" style="margin: 30px 0 35px 0;">
+      <h5 style="background-color: #eeeeee;">配送先編集</h5>
+    </div>
+  </div>
+
+        <%#= render "layouts/error_messages", resource: @shipping_address %>
+        
+  <%= form_with model: @address, url: customers_address_path, local: true do |f| %>
+    <div class="row" style="font-size: 16px;">
+      <div class="col-md-3 text-left">
+        <%= f.label :郵便番号（ハイフンなし） %>
+      </div>
+      <div class="col-md-5 text-left">
+        <%= f.text_field :postal_code, aurofocus: true, placeholder: "0000000", size: 25 %>
+      </div>
+    </div>
+
+    <div class="row" style="font-size: 16px; margin-top: 10px;">
+      <div class="col-md-3 text-left">
+        <%= f.label :住所 %>
+      </div>
+      <div class="col-md-5 text-left">
+        <%= f.text_field :address, aurofocus: true, placeholder: "東京都新宿区新宿0-0", size: 57 %>
+      </div>
+    </div>
+
+    <div class="row" style="font-size: 16px; margin: 10px 0 40px 0;">
+      <div class="col-md-3 text-left">
+        <%= f.label :宛名 %>
+      </div>
+      <div class="col-md-5 text-left">
+        <%= f.text_field :name, aurofocus: true, placeholder: "令和花子", size: 25 %>
+      </div>
+      <div class="col-md-2 text-right">
+        <div class="actions">
+          <%= f.submit "変更内容を保存", class: "btn btn-ig btn-success w-60" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to "配送先登録/一覧へ戻る", customers_addresses_path, data: {"turbolinks" => false}, class: "btn btn-info" %>
+</div>

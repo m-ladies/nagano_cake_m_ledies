@@ -1,0 +1,174 @@
+    <div class="container">
+        <% if @item.errors.any? %>
+            <%= @item.errors.count %>件のエラーが発生しました
+            <% @item.errors.full_messages.each do |message| %>
+                <%= message %>
+            <% end %>
+        <% end %>
+        <div class="row">
+            <div class="col-md-3 text-center" style="margin: 15px 0 15px 0;">
+                <h3 style="background-color: #eeeeee;">商品新規登録</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 ml-md-auto">
+                <%= form_with model: @item, url: admin_items_path, method: :post, local:true do |f| %>
+                    <table>
+                        <tr>
+                            <th><%= f.label :"商品画像", class: "mr-5" %></th>
+                            <td>
+                                <div class="form-group">
+                                    <%= f.attachment_field :image, class: "image" %>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><%= f.label :"商品名", class: "mr-5" %></th>
+                            <td>
+                                <div class="form-group">
+                                    <%= f.text_field :name, class: "form-control" %>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><%= f.label :"商品説明", class: "mr-5" %></th>
+                            <td>
+                                <div class="form-group">
+                                    <%= f.text_area :introduction, class: "form-control", :size=>"40x6" %>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><%= f.label :"ジャンル", class: "mr-5" %></th>
+                            <td>
+                                <div class="form-group">
+                                    <%= f.collection_select :genre_id, @genres, :id, :name, {prompt: "選択してください"}%>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><%= f.label :"税込価格", class: "mr-5" %></th>
+                            <td>
+                                <div class="form-group form-inline">
+                                    <%= f.text_field :price, class: "form-control" %>円
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><%= f.label :"販売ステータス", class: "mr-5" %></th>
+                            <td>
+                                <div class="form-group">
+                                    <%= f.radio_button :is_active, true %>
+                                    <%= f.label :is_active, '販売中', value: true %>
+                                    <%= f.radio_button :is_active, false %>
+                                    <%= f.label :sale_status, '販売停止中', value: false %>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <div class="actions">
+                                    <%= f.submit "新規登録", :class => "btn btn-outline-secondary btn-block" %>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!--<div class="col-md-3 text-center" style="margin: 30px 0 35px 0;">-->
+            <!--    <h3 style="background-color: #eeeeee;">商品新規登録</h3>-->
+            <!--<h3>商品新規登録</h3>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="row">-->
+    <!--        <div class="col-md-3"></div>-->
+    <!--        <div class="col-md-6">-->
+    <!--            <%#= form_with model: @item, url: admin_items_path, method: :post, local:true do |f| %>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="row">-->
+    <!--        <div class="col-md-2"></div>-->
+    <!--        <div class="col-md-2">-->
+    <!--            <p>商品画像</p>-->
+    <!--        </div>-->
+    <!--        <div class="col-md-5">-->
+    <!--            <%#= f.attachment_field :image, class: "image" %>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="row">-->
+    <!--        <div class="col-md-2"></div>-->
+    <!--        <div class="col-md-2">-->
+    <!--            <p>商品名</p>-->
+    <!--        </div>-->
+    <!--        <div class="col-md-4">-->
+    <!--            <%#= f.text_field :name, :size=>"40x5" %>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="row">-->
+    <!--        <div class="col-md-2"></div>-->
+    <!--        <div class="col-md-2">-->
+    <!--            <p>商品説明</p>-->
+    <!--        </div>-->
+    <!--        <div class="col-md-4">-->
+    <!--            <%#= f.text_area :introduction, :size=>"40x10" %>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="row">-->
+    <!--        <div class="col-md-2"></div>-->
+    <!--        <div class="col-md-2">-->
+    <!--            <p>ジャンル</p>-->
+    <!--        </div>-->
+    <!--        <div class="col-md-4">-->
+    <!--            <%#= f.collection_select :genre_id, @genres, :id, :name, {prompt: "選択してください"}%>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="row">-->
+    <!--        <div class="col-md-2"></div>-->
+    <!--        <div class="col-md-2">-->
+    <!--            <p>税込価格</p>-->
+    <!--        </div>-->
+    <!--        <div class="col-md-4">-->
+    <!--            <%#= f.text_field :price, :size=>"40x5" %>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="row">-->
+    <!--        <div class="col-md-2"></div>-->
+    <!--        <div class="col-md-2">-->
+    <!--            <p>販売ステータス</p>-->
+    <!--        </div>-->
+    <!--        <div class="col-md-4">-->
+    <!--            <%#= f.radio_button :is_active, true %>-->
+    <!--            <%#= f.label :is_active, '販売中', value: true %>-->
+    <!--            <%#= f.radio_button :is_active, false %>-->
+    <!--            <%#= f.label :sale_status, '販売停止中', value: false %>-->
+                <!--プルダウン-->
+                <%#= f.label :"販売ステータス", class: "col-sm-3 control-label" %>
+                <!--<%#= f.select :is_active, [['販売中', true], ['販売停止', false]], prompt: "-- 選択してください --", class: "col-sm-9 is_sale" %>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="row">-->
+    <!--        <div class="col-md-4"></div>-->
+    <!--        <div class="col-md-4">-->
+    <!--            <%#= f.submit "新規登録", class: "btn btn-success btn-lg pull-right" %>-->
+    <!--        <%# end %>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="col-md-3"></div>-->
+    <!--</div>-->

@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 text-center" style="margin: 10px 0 10px 0;">
+     <h3 style="background-color: #eeeeee;">会員情報詳細編集</h3>
+    </div>
+  </div>
+  <%= form_with model: @customer, url:admin_customer_path(@customer), local: true do |f| %>
+        <div class="form-group row">
+          <%= f.label :会員id,class: "col-sm-4" %>
+          <%= f.label @customer.id, class: "col-sm-8" %>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :氏名, class: "col-sm-4" %>
+          <%= f.text_field :last_name, class: "form-control col-sm-2" %>
+          <%= f.text_field :first_name, class: "form-control col-sm-2" %>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :フリガナ, class: "col-sm-4" %>
+          <%= f.text_field :last_name_kana, class: "form-control col-sm-2" %>
+          <%= f.text_field :first_name_kana, class: "form-control col-sm-2" %>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :郵便番号, class: "col-sm-4" %>
+          <%= f.text_field :postal_code, class: "form-control col-sm-2" %>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :住所, class: "col-sm-4" %>
+          <%= f.text_field :address, class: "form-control col-sm-6" %>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :電話番号, class: "col-sm-4" %>
+          <%= f.text_field :telephone_number, class: "form-control col-sm-2" %>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :メールアドレス, class: "col-sm-4" %>
+          <%= f.email_field :email, class: "form-control col-sm-6" %>
+        </div>
+
+        <div class="row">
+          <%= f.label :会員ステータス, class: "ml-3" %>
+          <div class="form-check ml-4">
+            <%= f.radio_button :is_deleted, :true %>
+            <%= f.label :is_deleted, "退会済み" %>
+            <%= f.radio_button :is_deleted, :false %>
+            <%= f.label :is_deleted, "有効会員" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="actions">
+          <%= f.submit "変更を保存", class: "btn btn-outline-secondary btn-block" %>
+        </div>
+      <% end %>
+  </div>
+</div>

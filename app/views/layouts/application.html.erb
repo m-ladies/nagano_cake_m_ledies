@@ -1,16 +1,89 @@
-o.hazuki
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>WorkGithub</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+     <title>WorkGithub</title>
+     <%= csrf_meta_tags %>
+     <%= csp_meta_tag %>
+     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+   </head>
+  
+   <body>
+     <header class="navbar navbar-expand-lg" >
+       <div class="container" >
+         <%= link_to root_path do %>
+            <%= image_tag 'logo.png' %>
+        <% end %>
+        <% if customer_signed_in? %>
+        <ul class="nav-item">
+          <span class="nav-item-content">ようこそ <%= current_customer.last_name %>さん！</span>
+        </ul>
+        <ul class="nav-item">
+          <%= link_to "　マイページ", customers_customer_path(current_customer.id), class: 'fas fa-user faa-wrench nav-link badge badge-pill' %>
+        </ul>
+        <ul class="nav-item">
+          <%= link_to "　商品一覧", customers_items_path, class: 'fas  fa-birthday-cake faa-wrench nav-link badge badge-pill ' %>
+        </ul>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+        <ul class="nav-item">
+          <%= link_to "　カート", customers_cart_items_path, class: 'fas fa-shopping-cart faa-wrench nav-link badge badge-pill' %>
+        </ul>
 
-  <body>
+        <ul class="nav-item">
+          <%= link_to "　ログアウト", destroy_customer_session_path, method: :delete, class: 'fas fa-sign-out-alt faa-wrench nav-link badge badge-pill' %>
+        </ul>
+        <ul>
+          <%= render "customers/items/search" %>
+        </ul>
+
+       <% elsif admin_signed_in? %>
+         <ul class="nav-item">
+           <%= link_to "　商品一覧", admin_items_path, class: "fas fa-birthday-cake fa-fw faa-wrench nav-link badge badge-pill" %>
+         </ul>
+         <ul class="nav-item">
+           <%= link_to "　会員一覧", admin_customers_path, class: "fas fa-users fa-fw faa-wrench nav-link badge badge-pill" %>
+         </ul>
+         <ul class="nav-item">
+           <%= link_to "　注文履歴一覧", admin_homes_top_path, class: "fas fa-file-alt fa-fw faa-wrench nav-link badge badge-pill" %>
+         </ul>
+         <ul class="nav-item">
+           <%= link_to "　ジャンル一覧", admin_genres_path, class: "fas fa-list-alt fa-fw faa-wrench nav-link badge badge-pill" %>
+         </ul>
+         <ul class="nav-item">
+           <%= link_to "　ログアウト", destroy_admin_session_path, method: :delete, class: "fas fa-sign-out-alt fa-fw faa-wrench nav-link badge badge-pill" %>
+         </ul>
+         <ul></ul>
+
+       <% else %>
+        <ul class="nav-item">
+          <%= link_to "　About", items_path, class: 'fas fa-info-circle faa-wrench nav-link  badge badge-pill' %>
+        </ul>
+        <ul class="nav-item">
+           <%= link_to "　商品一覧", customers_items_path, class: 'fas  fa-birthday-cake faa-wrench nav-link  badge badge-pill' %>
+        </ul>
+        <ul class="nav-item">
+          <%= link_to "　新規登録", new_customer_registration_path, class: 'fas fa-user-plus faa-wrench nav-link  badge badge-pill' %>
+        </ul>
+        <ul class="nav-item">
+          <%= link_to "　ログイン", new_customer_session_path, class: 'fas fa-sign-in-alt faa-wrench nav-link  badge badge-pill' %>
+        </ul>
+        <ul>
+          <%= render "customers/items/search" %>
+        </ul>
+       <% end %>
+      </div>
+    </header>
+    <% if flash[:notice] %>
+      <p class="alert alert-success">
+        <%= flash[:notice] %>
+      </p>
+    <% end %>
+    <p class="alert1"><%= alert %></p>
     <%= yield %>
-  </body>
+    <footer class="fixed-bottom">
+      <div class="d-flex align-items-center justify-content-center text-dark" style="height: 50px;">
+        <p class="nav-item" id="">&copy; 2021_06_leadies</p>
+      </div>
+    </footer>
+   </body>
 </html>
